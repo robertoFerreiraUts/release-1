@@ -2,7 +2,13 @@
   background-color: #316b18;
   height: 50px;
 }
-
+.logo{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+  
+}
 .navbarBottom{
   background-color: #bfa73b;
   

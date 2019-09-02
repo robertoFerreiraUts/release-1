@@ -23,8 +23,10 @@
                     <li class="nav-item active">
                         <a class="nav-link  text-white" href="#">Home</a>
                      </li>
+
+                      {{#if user}}
                      <li class="nav-item active">
-                            <a class="nav-link text-white" href="#">Account</a>
+                            <a href="/users/edit" class="nav-link text-white">Account</a>
                          </li>
                          <li class="nav-item active">
                                 <a class="nav-link text-white" href="#">Cart</a>
@@ -33,15 +35,21 @@
                              <li class="nav-item active">
                                     <a class="nav-link text-white" href="#">Items</a>
                             </li>
-                            <li class="nav-item">
-                              <a href="/users/login" class="nav-link">Login | Signup</a>
-                             </li>
                              <li class="nav-item">
                               <a href="/delivery" class="nav-link">Delivery</a>
                              </li>
+                                                 <li class="nav-item">
+            <a href="/users/logout" class="nav-link">Logout</a>
+          </li>
+
+                              {{else}}
+                            <li class="nav-item">
+                              <a href="/users/login" class="nav-link">Login | Signup</a>
+                             </li>
+                            {{/if}}
                              <li class="nav-item ">
                                     <i class="fas fa-user-cog fa-2x" style="color: antiquewhite;"></i>
-                             </li>
+                             </li> 
 
                 </ul>
             </div>

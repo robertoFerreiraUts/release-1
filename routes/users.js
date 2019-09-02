@@ -158,7 +158,7 @@ router.put('/:id', ensureAuthenticated, (req, res) => {
 router.delete('/:id', ensureAuthenticated, (req, res) => {
   User.remove({_id: req.params.id})
     .then(() => {
-      req.flash('success_msg', ' removed');
+      req.flash('success_msg', 'Your account has been deactivated');
       res.redirect('/');
     });
 });
