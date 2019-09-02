@@ -3,31 +3,31 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const deliverySchema = new Schema({
-    appartmentNum: {
-        type: int,
-        required: false
+    
+    appartmentNumber: {
+        type: String,
+        required: true
     },
-    streettNum: {
-        type: int,
+    streetNumber: {
+        type: String,
         required: true
     },
     streetName: {
         type: String,
         required: true
-    }
-        suburb: {
+    },
+    suburb: {
+        type: String,
+        required: true
+    },
+    postcode: {
+        type: String,
+        required: true
+    },
+    state: {
         type: String,
         required: true
     }
-        Postcode: {
-        type: int,
-        required: true
-    }
-        State: {
-        type: String,
-        required: true
-    }
-
 });
 
-mongoose.model('delivery', RecipeSchema);
+mongoose.model('delivery', deliverySchema);
