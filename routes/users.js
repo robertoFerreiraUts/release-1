@@ -14,6 +14,8 @@ router.get('/login', (req, res) => {
   res.render('users/login');
 });
 
+
+
 // User Register Route
 router.get('/register', (req, res) => {
   res.render('users/register');
@@ -22,6 +24,11 @@ router.get('/register', (req, res) => {
 // User Payment Route
 router.get('/payment', (req, res) => {
   res.render('users/payment');
+});
+
+// cart route
+router.get('/cart', (req, res)=>{
+  res.render('users/cart');
 });
 
 // User Payment POST
