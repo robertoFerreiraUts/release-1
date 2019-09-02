@@ -13,6 +13,10 @@ const User = mongoose.model('users');
 router.get('/login', (req, res) => {
   res.render('users/login');
 });
+// User areusure get
+router.get('/areusure', (req, res) => {
+  res.render('users/areusure');
+});
 
 
 
