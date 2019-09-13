@@ -17,17 +17,10 @@ router.get('/payment', (req, res) => {
 // Register Form POST
 router.post('/payment', (req, res) => {
   const newUser = new Del({
-    email: req.body.email,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    address: req.body.address,
-    city: req.body.city,
-    postcode: req.body.postcode,
-    card_num: req.body.card_num,
-    expire_date: req.body.expire_date,
-    security_code: req.body.security_code,
-    phone_num: req.body.phone_num,
-    price: req.body.price
+    cardnum: req.body.cardnum,
+    expiredate: req.body.expiredate,
+    securitycode: req.body.securitycode,
+    phonenum: req.body.phonenum,
   });
   newUser.save()
   .then(user => {

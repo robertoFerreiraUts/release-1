@@ -3,47 +3,19 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const paymentSchema = new Schema({
-  email:{
+  cardnum:{
     type: String,
     required: true
   },
-  first_name:{
+  expiredate:{
     type: String,
     required: true
   },
-  last_name:{
-    type: String,
-    required: true
-  },
-  address:{
-    type: String,
-    required: true
-  },
-  city:{
-    type: String,
-    required: true
-  },
-  postcode:{
-    type: String,
-    required: true
-  },
-  card_num:{
-    type: String,
-    required: true
-  },
-    expire_date:{
-    type: String,
-    required: true
-  },
-  security_code:{
+  securitycode:{
     type: String,
     required: false
   },
-  phone_num:{
-    type: String,
-    required: true
-  },
-  price:{
+  phonenum:{
     type: String,
     required: true
   },

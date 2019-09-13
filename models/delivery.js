@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const deliverySchema = new Schema({
-    
     appartmentNumber: {
         type: String,
         required: true
