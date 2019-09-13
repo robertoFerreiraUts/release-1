@@ -14,7 +14,7 @@ const db = require('./config/database');
 
 // Load routes
 const users = require('./routes/users');
-
+const payment = require('./routes/payment');
 const delivery = require('./routes/delivery');
 
 // Passport Config
@@ -80,7 +80,9 @@ app.get('/about', (req, res) => {
   res.render('about');
 });
 
-
+app.get('/payment', (req, res) => {
+  res.render('payment');
+});
 
 app.get('/delivery', (req, res) => {
   res.render('delivery');
@@ -99,11 +101,11 @@ app.use('/users', users);
 
 app.use('/delivery', delivery);
 
+app.use('/payment', payment);
 //Load 404 page (if page is not exist!)
 app.use((req ,res) => res.render('not_found'));
 
-
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 2000;
 
 app.listen(port, () =>{
   console.log(`Server started on port ${port}`);
