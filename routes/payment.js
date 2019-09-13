@@ -11,7 +11,7 @@ const Del = mongoose.model('payment');
 
 // User Login Route
 router.get('/payment', (req, res) => {
-  res.render('/users/payment');
+  res.render('/payment');
 });
 
 // Register Form POST
