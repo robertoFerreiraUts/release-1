@@ -58,14 +58,48 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 
 // User Privilege get
 router.get('/privilege', (req, res) => {
-  res.render('users/privilege');
+  var searchEmail = req.query.searchEmail;
+  if (searchEmail == null || searchEmail == "") { // check if search is empty
+    var userArray = User.find();
+  } else {
+    var userArray = User.find({ email: searchEmail}); //search by email
+  }
+  var allUsers = [];
+  userArray.exec(function(err, users){
+    if(err)
+      return consol.log(err);
+    users.forEach(function(user){
+      var elem = new Object();
+      elem["firstname"] = user.firstname;
+      elem["lastname"] = user.lastname;
+      elem["email"] = user.email;
+      elem["privilege"] = user.privilege;
+      elem["id"] = user.id;
+
+      allUsers.push(elem);
+      console.log(elem);
+    });
+    if (allUsers.length == 0) { //check if search failed
+      req.flash('error_msg', 'Search Failed');
+      res.redirect(303, '/users/privilege');
+    } else {
+    res.render('users/privilege', {users: allUsers});
+  }
+  });
 });
 
-// User privilege POST
-router.post('/privilege', (req, res, next) => {
-  User.findOne({id: req.body.id})
+// User privilege post
+router.put('/privilege/:id', (req, res) => { //update privilege level of user
+  User.findOne({
+    _id: mongoose.Types.ObjectId(req.params.id)
+  })
   .then(user => {
     user.privilege = req.body.privilege;
+    user.save()
+      .then(user => {
+        req.flash('success_msg', 'Privilege updated');
+        res.redirect(303, '/users/privilege');
+      })
   });
 });
 
@@ -115,7 +149,8 @@ router.post('/register', (req, res) => {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            privilege: "1"
           });
 
           bcrypt.genSalt(10, (err, salt) => {
@@ -207,7 +242,7 @@ router.post('/forgot', function(req,res,next) {
     },
     function(token, user, done) {
       const smtpTransport = nodemailer.createTransport({
-        service: 'Gmail', 
+        service: 'Gmail',
         auth: {
           user: 'easyg3044@gmail.com',
           pass: 'Easygo123'
@@ -220,7 +255,7 @@ router.post('/forgot', function(req,res,next) {
         text: 'Hi ' + user.firstname + ' Forgot your EasyGo password? \n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
           'http://' + req.headers.host + '/users/reset/' + token + '\n\n' + '\n\n' +
-          'If you did not request this, please ignore this email and your password will remain unchanged.\n' + 
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n' +
           '\n\n' + '*To ensure your EasyGo account remains as safe and secure as possible, this password reset request expires in 48 hours.'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
@@ -272,7 +307,7 @@ router.post('/reset/:token', function(req, res) {
     },
     function(user, done) {
       const smtpTransport = nodemailer.createTransport({
-        service: 'Gmail', 
+        service: 'Gmail',
         auth: {
           user: 'easyg3044@gmail.com',
           pass: 'Easygo123'

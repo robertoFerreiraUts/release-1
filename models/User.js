@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  
+
   email:{
     type: String,
     unique: true,
@@ -32,10 +32,11 @@ const UserSchema = new Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
-  // privilege:{
-  //   type: String,
-  //   required: false
-  // },
+
+  privilege: {
+    type: String,
+    required: false
+  }
   // id:{
   //   type: String,
   //   required: false
