@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoDB = "mongodb://localhost/LocalDev";
+const mongoDB = "mongodb://newdown:newdown1234@ds263927.mlab.com:63927/heroku_fw9f58vn";
 mongoose.connect(mongoDB);
 const chai = require('chai');
 const expect = chai.expect;
