@@ -4,7 +4,8 @@
   "description": "APP to create Login",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "mocha"
   },
   "author": "Dino",
   "license": "MIT",
@@ -12,11 +13,13 @@
     "async": "^3.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
     "connect-flash": "^0.1.1",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.16.2",
     "method-override": "^3.0.0",
+    "mocha": "^6.2.0",
     "mongodb": "^3.3.0",
     "mongoose": "^4.13.19",
     "nodemailer": "^6.3.0",
