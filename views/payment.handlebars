@@ -1,29 +1,25 @@
-<div class="row">
-  <div class="col-md-6 mx-auto">
-    <div class="card card-body">
+<center>
       <h3 class="text-center">Payment</h3>
       <form id="pay" action="/payment/payment" method="post">
         <div class="form-group">
           <label for="cardnum">Card Number</label>
-          <input type="text" class="form-control" name="cardnum" value="{{cardnum}}">
+          <input type="text" class="form-control" name="cardnum" value="{{cardnum}}" style="width: 300px;">
         </div>
         <div class="form-group">
           <label for="expiredate">Expiration Date</label>
-          <input type="text" class="form-control" name="expiredate" value="{{expiredate}}">
+          <input type="month" class="form-control" name="expiredate" value="{{expiredate}}"style="width: 200px;">
         </div>
         <div class="form-group">
           <label for="securitycode">Security Code</label>
-          <input type="text" class="form-control" name="securitydate" value="{{securitydate}}">
+          <input type="text" class="form-control" name="securitydate" value="{{securitydate}}"style="width: 75px;">
         </div>
         <div class="form-group">
           <label for="address">Phone Number</label>
-          <input type="text" class="form-control" name="phonenum" value="{{phonenum}}">
+          <input type="text" class="form-control" name="phonenum" value="{{phonenum}}"style="width: 300px;">
         </div>
         <div class="form-group">
-          <label for="Name">Price: $12.00</label>
+          <label for="Price">Price: $12.00</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-    </div>
-  </div>
-</div>
+</center>
