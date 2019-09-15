@@ -19,11 +19,15 @@ router.post('/payment', (req, res) => {
   let errors = [];
   
   if (!req.body.cardnum.match("[0-9]+")) {
-    errors.push({text:'Card Number must be digits'});
+    errors.push({text:'Card Number must be all digits'});
   }
 
   if (req.body.cardnum.length < 16) {
-    errors.push({text:'Card Number must be 16 digits'});
+    errors.push({text:'Card Number must be at least 16 digits'});
+  }
+
+  if (!req.body.securitycode.match("[0-9]+")) {
+    errors.push({text:'Security Code must be all digits'});
   }
 
   if (req.body.securitycode.length < 3) {
