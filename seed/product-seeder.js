@@ -44,6 +44,27 @@ new Product({
     title: 'Coffee-beans',
     description: 'good coffee',
     price: 3
+}),
+
+new Product({
+    imagePath: 'images/card1.png',
+    title: 'Chocolate',
+    description: 'good chocolate',
+    price: 80
+}),
+
+new Product({
+    imagePath: 'images/card1.png',
+    title: 'Greens',
+    description: 'greens',
+    price: 90
+}), 
+
+new Product({
+    imagePath: 'images/card1.png',
+    title: 'Coffee-beans',
+    description: 'good coffee',
+    price: 6
 })
 
 
