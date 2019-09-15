@@ -1,4 +1,8 @@
 module.exports ={
-    email: 'test@mail.com',
-    password: 'test123'
+    firstname: "testfirstname",
+    lastname: "testlastname",
+    email: 'test3@mail.com',
+    email2: 'test3@mail.com',
+    password: 'test123',
+    password2: "test123"
 }

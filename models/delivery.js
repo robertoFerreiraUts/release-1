@@ -3,31 +3,33 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const deliverySchema = new Schema({
-    
-    appartmentNumber: {
-        type: String,
-        required: true
-    },
     streetNumber: {
         type: String,
-        required: true
+        required: false
     },
     streetName: {
         type: String,
-        required: true
+        required: false
     },
     suburb: {
         type: String,
-        required: true
+        required: false
     },
     postcode: {
         type: String,
-        required: true
+        required: false
     },
     state: {
         type: String,
-        required: true
-    }
-});
+        required: false
+    },
+    DeliveryDate: {
+        type: String,
+        required: false
+    },
+    DeliveryTime: {
+        type: String,
+        required: false
+    },});
 
 mongoose.model('delivery', deliverySchema);
