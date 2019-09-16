@@ -26,30 +26,23 @@ router.post('/payment', (req, res) => {
     errors.push({text:'Card Number must be 16 digits'});
   }
 
-  if (req.body.securitycode.length < 3) {
-    errors.push({text:'Security Code must be at least 3 digits'});
-  }
-
   if(errors.length > 0){
     res.render('payment', {
       errors: errors,
       cardnum: req.body.cardnum,
       expiredate: req.body.expiredate,
       securitycode: req.body.securitycode,
-      phonenum: req.body.phonenum,
-      emailaddress: req.body.emailaddress
+      phonenum: req.body.phonenum
   });
   } else {
   const newUser = new Del({
     cardnum: req.body.cardnum,
     expiredate: req.body.expiredate,
     securitycode: req.body.securitycode,
-    phonenum: req.body.phonenum,
-    emailaddress: req.body.emailaddress
+    phonenum: req.body.phonenum
   });
   newUser.save()
   .then(user => {
-    req.flash('success_msg', 'Payment Successful');
     res.redirect('/');
   })
   }
