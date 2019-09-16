@@ -88,7 +88,6 @@ app.use(function(req, res, next){
   next();
 });
 
-Index Route
 app.get('/', (req, res) => {
  const title = 'Welcome';
  res.render('index', {
@@ -115,9 +114,6 @@ app.get('/courier', (req, res) => {
 
 app.get('/deliveryDT', (req, res) => {
   res.render('deliveryDT');
-});
-app.get('/deliveryFree', (req, res) => {
-  res.render('deliveryFree');
 });
 
 // Use routes

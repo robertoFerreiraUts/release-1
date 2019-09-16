@@ -8,7 +8,6 @@ const router = express.Router();
 // Load User Model
 require('../models/delivery');
 const Del = mongoose.model('delivery');
-const thisDel = new Del;
 
 // User Login Route
 router.get('/delivery', (req, res) => {
@@ -18,6 +17,7 @@ router.get('/delivery', (req, res) => {
 // Register Form POST
 router.post('/delivery', (req, res) => {
   const newUser = new Del({
+    appartmentNumber: req.body.appartmentNumber,
     streetNumber: req.body.streetNumber,
     streetName: req.body.streetName,
     suburb: req.body.suburb,

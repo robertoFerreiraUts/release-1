@@ -1,15 +1,14 @@
 <center>
-  <form id="del" method="post" action="delivery/deliveryDT">
+<form action"/index">
     <h2>
- Express Delivery
+  Delivey Date and Time
   </h2>
-  <p style="font-weight: bold;">Please select your delivery day:</p>
-  <select name="DeliveryDate" id="DeliveryDate" value="{{DeliveryDate}}" required>
-  <option value="Date+2"> <p id="Day2">18/9</p> </option>
-  </select>
-  <p></p>
-  <p style="font-weight: bold;">Please select your estimated delivery time:</p>
-  <select name="DeliveryTime" id="DeliveryTime" value="{{DeliveryTime}}" required>
+  <p id="demo"></p>
+  Delivery Date:
+  <input type="date" name="date" required>
+  <br>
+  Estimated Delivery Time:
+  <select name="state" id="state" required>
     <option value="8AM">8AM</option>
     <option value="10AM">10AM</option>
     <option value="12PM">12PM</option>
@@ -18,13 +17,14 @@
     <option value="6PM">6PM</option>
     <option value="8PM">8PM</option>
   </select>
-  <p></p>
-  <input type="submit" value="Submit Delivery">
+  <br>
+  <input type="submit" value="Submit Date">
   </form>
   </center>
 <script>
   window.onload = function() {
-  var today = new Date();
-  document.getElementById("Day1").innerHTML = ""+ ( today.getDate() + 1 ) + "/" +  today.getMonth();
+  
+   var x = localStorage.getItem("address");
+   document.getElementById("demo").innerHTML = "Delivery Address: " + x;
   }
 </script>
