@@ -31,17 +31,4 @@ router.post('/delivery', (req, res) => {
   
 });
 
-
-router.post('/deliveryDT', (req, res) => {
-  const newUser = new Del({
-    DeliveryDate: req.body.DeliveryDate,
-    DeliveryTime: req.body.DeliveryTime
-  });
-  newUser.save()
-  .then(user => {
-    res.redirect('/users/payment');
-  })
-  
-});
-
 module.exports = router;
