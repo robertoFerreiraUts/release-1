@@ -12,18 +12,30 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                            <form class="form-inline">
-                                    <input class="form-control mr-sm-2 rounded-pill bg-light  fa fa-search " type="search" aria-hidden="true" placeholder="Search" aria-label="Search">
-                                    <a class="nav-item" href="#">  <i class="fa fa-search fa-lg " style="color: aliceblue;"></i></a>
+                          <form class="form-inline my-2 my-lg-0 ml-auto">
+                           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                          </form>
 
 
-                                   <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-                            </form>
+
+                           
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link  text-white" href="#">Home</a>
+                        <a class="nav-link  text-white" href="#"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
                      </li>
 
+
+
+              <!--jackson feature for release 1 !-->
+                     <li class="nav-item">
+                     <a class="nav-link text-white" href="/shopping-cart/"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                           Shopping Cart</a>
+                      <span class="badge">{{session.cart.totalQty}}</span>
+                    </li>
+                <!--..........!-->
+
+                
                       {{#if user}}
                      <li class="nav-item active">
                             <a href="/users/edit" class="nav-link text-white">Account</a>
@@ -47,7 +59,7 @@
 
                               {{else}}
                             <li class="nav-item">
-                              <a href="/users/login" class="nav-link">Login | Signup</a>
+                              <a href="/users/login" class="nav-link text-white">Login | Signup</a>
                              </li>
                             {{/if}}
                              <li class="nav-item ">
