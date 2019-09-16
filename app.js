@@ -42,9 +42,9 @@ mongoose.connect(db.mongoURI, {
 
 // mongoose.connect('mongodb://127.0.0.1:27017/shopping', {useNewUrlParser: true});
 
-// puttt 
+// puttt
 
-  
+
 
 
 // Handlebars Middleware
@@ -88,12 +88,8 @@ app.use(function(req, res, next){
   next();
 });
 
-app.get('/', (req, res) => {
- const title = 'Welcome';
- res.render('index', {
-  title: title
-  });
-});
+//Index Route
+
 
 // About Route
 app.get('/about', (req, res) => {
