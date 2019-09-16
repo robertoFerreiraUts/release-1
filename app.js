@@ -88,13 +88,13 @@ app.use(function(req, res, next){
   next();
 });
 
-// Index Route
-//app.get('/', (req, res) => {
- // const title = 'Welcome';
- //res.render('index', {
- // title: title
-//  });
-//});
+Index Route
+app.get('/', (req, res) => {
+ const title = 'Welcome';
+ res.render('index', {
+  title: title
+  });
+});
 
 // About Route
 app.get('/about', (req, res) => {
