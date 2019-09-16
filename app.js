@@ -8,11 +8,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-
-
-
-
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 
 const app = express();
 //DB config
@@ -23,25 +19,17 @@ const users = require('./routes/users');
 const payment = require('./routes/payment');
 const delivery = require('./routes/delivery');
 
-
-
 // Passport Config
 require('./config/passport')(passport);
 
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
-
-
 // Connect to mongoose
-
-
-
-mongoose.connect('mongodb://127.0.0.1:27017/shopping', {useNewUrlParser: true});
-
-// puttt 
-
-  
-
+mongoose.connect(db.mongoURI, {
+  useMongoClient: true
+})
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
@@ -84,14 +72,6 @@ app.use(function(req, res, next){
   next();
 });
 
-// Index Route
-//app.get('/', (req, res) => {
- // const title = 'Welcome';
- //res.render('index', {
- // title: title
-//  });
-//});
-
 // About Route
 app.get('/about', (req, res) => {
   res.render('about');
@@ -123,8 +103,6 @@ app.use('/delivery', delivery);
 
 app.use('/payment', payment);
 
-app.use('/', indexRouter);
-
 //Load 404 page (if page is not exist!)
 app.use((req ,res) => res.render('not_found'));
 
@@ -135,4 +113,3 @@ app.listen(port, () =>{
   console.log(`Server started on port ${port}`);
 });
 
-module.exports = app;
