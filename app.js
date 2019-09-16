@@ -7,7 +7,6 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
 
 
 
@@ -28,20 +27,13 @@ const delivery = require('./routes/delivery');
 // Passport Config
 require('./config/passport')(passport);
 
-// Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
-
-
 // Connect to mongoose
-
-
-
-mongoose.connect('mongodb://127.0.0.1:27017/shopping', {useNewUrlParser: true});
-
-// puttt 
-
-  
-
+mongoose.connect(db.mongoURI, {
+  useMongoClient: true
+})
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
@@ -52,10 +44,6 @@ app.set('view engine', 'handlebars');
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
