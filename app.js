@@ -67,28 +67,6 @@ app.use(function(req, res, next){
   next();
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-//Index Route
-
-=======
-// Index Route
-//app.get('/', (req, res) => {
- // const title = 'Welcome';
- //res.render('index', {
- // title: title
-//  });
-//});
->>>>>>> parent of 36a9cac... Update app.js
-=======
-// Index Route
-app.get('/', (req, res) => {
-  const title = 'Welcome';
-  res.render('index', {
-    title: title
-  });
-});
->>>>>>> ff42f175ce2bdc8da947f5433de14e27bddccccf
 
 // About Route
 app.get('/about', (req, res) => {
