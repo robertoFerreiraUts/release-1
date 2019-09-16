@@ -33,10 +33,14 @@ mongoose.Promise = global.Promise;
 
 
 // Connect to mongoose
+mongoose.connect(db.mongoURI, {
+  useMongoClient: true
+})
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 
 
-
-mongoose.connect('mongodb://127.0.0.1:27017/shopping', {useNewUrlParser: true});
+// mongoose.connect('mongodb://127.0.0.1:27017/shopping', {useNewUrlParser: true});
 
 // puttt 
 
@@ -84,13 +88,8 @@ app.use(function(req, res, next){
   next();
 });
 
-// Index Route
-//app.get('/', (req, res) => {
- // const title = 'Welcome';
- //res.render('index', {
- // title: title
-//  });
-//});
+//Index Route
+
 
 // About Route
 app.get('/about', (req, res) => {
