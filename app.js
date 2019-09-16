@@ -88,7 +88,7 @@ app.use(function(req, res, next){
   next();
 });
 
-Index Route
+//Index Route
 app.get('/', (req, res) => {
  const title = 'Welcome';
  res.render('index', {
