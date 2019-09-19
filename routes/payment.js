@@ -10,8 +10,8 @@ require('../models/payment');
 const Del = mongoose.model('payment');
 
 // User Login Route
-router.get('/delivery', (req, res) => {
-  res.render('/delivery');
+router.get('/payment', (req, res) => {
+  res.render('/payment');
 });
 
 // Register Form POST
