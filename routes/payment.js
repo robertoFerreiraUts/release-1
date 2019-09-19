@@ -9,6 +9,11 @@ const router = express.Router();
 require('../models/payment');
 const Del = mongoose.model('payment');
 
+// User Login Route
+router.get('/delivery', (req, res) => {
+  res.render('/delivery');
+});
+
 // Register Form POST
 router.post('/payment', (req, res) => {
   let errors = [];
