@@ -20,7 +20,7 @@ const db = require('./config/database');
 
 // Load routes
 const users = require('./routes/users');
-const payment = require('./routes/payment');
+// const payment = require('./routes/payment'); -- have a look
 const delivery = require('./routes/delivery');
 
 
@@ -33,10 +33,14 @@ mongoose.Promise = global.Promise;
 
 
 // Connect to mongoose
+mongoose.connect(db.mongoURI, {
+  useMongoClient: true
+})
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 
 
-
-mongoose.connect('mongodb://127.0.0.1:27017/shopping', {useNewUrlParser: true});
+  //  mongoose.connect('mongodb://127.0.0.1:27017/shopping', {useNewUrlParser: true});
 
 // puttt 
 
@@ -53,8 +57,8 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+       app.use(cookieParser());
+       app.use(express.static(path.join(__dirname, 'public')));
 
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -121,7 +125,7 @@ app.use('/users', users);
 
 app.use('/delivery', delivery);
 
-app.use('/payment', payment);
+// app.use('/payment', payment); -->> fix your javascript
 
 app.use('/', indexRouter);
 
@@ -135,4 +139,3 @@ app.listen(port, () =>{
   console.log(`Server started on port ${port}`);
 });
 
-module.exports = app;
