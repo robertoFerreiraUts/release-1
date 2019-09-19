@@ -20,7 +20,7 @@ const db = require('./config/database');
 
 // Load routes
 const users = require('./routes/users');
-// const payment = require('./routes/payment'); -- have a look
+const payment = require('./routes/payment')
 const delivery = require('./routes/delivery');
 
 
@@ -122,7 +122,7 @@ app.get('/deliveryFree', (req, res) => {
 
 // Use routes
 app.use('/users', users);
-
+app.use('/payment', payment);
 app.use('/delivery', delivery);
 
 // app.use('/payment', payment); -->> fix your javascript
