@@ -7,7 +7,17 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
+<<<<<<< Updated upstream
+=======
+const cookieParser = require('cookie-parser');
 
+
+
+
+>>>>>>> Stashed changes
+
+
+var indexRouter = require('./routes/index');
 const app = express();
 //DB config
 const db = require('./config/database');
