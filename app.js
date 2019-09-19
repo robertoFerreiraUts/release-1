@@ -125,8 +125,6 @@ app.use('/users', users);
 app.use('/payment', payment);
 app.use('/delivery', delivery);
 
-// app.use('/payment', payment); -->> fix your javascript
-
 app.use('/', indexRouter);
 
 //Load 404 page (if page is not exist!)
