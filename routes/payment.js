@@ -68,7 +68,7 @@ console.log('Email sent: ' + info.response);
       
   newUser.save()
   .then(user => {
-    req.flash('success_msg', 'Payment Successful, Email Confirmation Sent');
+    req.flash('success_msg', 'Payment Successful, Email Confirmation Sent!');
     res.redirect('/');
   })
   }
