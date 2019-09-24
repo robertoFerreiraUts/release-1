@@ -54,11 +54,9 @@
                                             <a href="/delivery" class="nav-link">Delivery</a>
                                             <a href="/deliveryTracking" class="nav-link">Tracking</a>
                                             <a href="/users/edit" class="nav-link">Profile</a>
+                                             <a href="/users/logout" class="nav-link">Logout</a>
 
                             </li>
-                                                 <li class="nav-item">
-            <a href="/users/logout" class="nav-link">Logout</a>
-          </li>
 
                               {{else}}
                             <li class="nav-item">
@@ -72,6 +70,9 @@
 
                 </ul>
             </div>
+             {{#if user}}
+             <img class="logo2" src="/users/{{user.id}}/avatar">
+                 {{/if}}
         </div>
 
 
