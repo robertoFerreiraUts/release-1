@@ -29,6 +29,8 @@ const UserSchema = mongoose.Schema({
 
   avatar: {
     type: Buffer
+    
+    
   },
   date: {
     type: Date,
