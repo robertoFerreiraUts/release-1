@@ -20,6 +20,7 @@ const db = require('./config/database');
 
 // Load routes
 const users = require('./routes/users');
+const orders = require('./routes/orders');
 const payment = require('./routes/payment')
 const delivery = require('./routes/delivery');
 
@@ -42,9 +43,9 @@ mongoose.connect(db.mongoURI, {
 
   //  mongoose.connect('mongodb://127.0.0.1:27017/shopping', {useNewUrlParser: true});
 
-// puttt 
+// puttt
 
-  
+
 
 
 // Handlebars Middleware
@@ -116,6 +117,9 @@ app.get('/courier', (req, res) => {
 app.get('/deliveryDT', (req, res) => {
   res.render('deliveryDT');
 });
+app.get('/deliveryTracking', (req, res) => {
+  res.render('deliveryTracking');
+});
 app.get('/deliveryFree', (req, res) => {
   res.render('deliveryFree');
 });
@@ -123,6 +127,7 @@ app.get('/deliveryFree', (req, res) => {
 // Use routes
 app.use('/users', users);
 app.use('/payment', payment);
+app.use('/orders', orders);
 app.use('/delivery', delivery);
 
 app.use('/', indexRouter);
@@ -136,4 +141,3 @@ const port = process.env.PORT || 5000;
 app.listen(port, () =>{
   console.log(`Server started on port ${port}`);
 });
-

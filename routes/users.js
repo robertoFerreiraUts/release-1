@@ -353,9 +353,11 @@ router.post('/avatar', ensureAuthenticated, upload.single('avatar'), async (req,
    const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
    req.user.avatar = buffer
   await req.user.save()
+  req.flash('success_msg', 'Success! Your profile image was updated');
   res.redirect("/users/edit")
 }, (error, req, res, next) => {
-  res.status(400).send({error: error.message})
+  req.flash('error_msg', 'Error! Please upload an image');
+  res.redirect("/users/edit")
 });
 
 router.get('/:id/avatar', async (req, res) => {
