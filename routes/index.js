@@ -47,7 +47,7 @@ router.get('/search', function(req, res, next){
 
   var searchProduct = req.query.searchProduct;
   
-  if (searchProduct != null ) {
+  if (searchProduct != Product ) {
     Product.find (function(err, docs){
       var productChunks =[];
       var chunkSize = 6;
