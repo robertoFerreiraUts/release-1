@@ -35,9 +35,14 @@ router.get('/payment', (req, res) => {
   res.render('users/payment');
 });
 
-// cart route
-router.get('/cart', (req, res)=>{
-  res.render('users/cart');
+// admin-product route
+router.get('/admin-product', function(req, res, next) {
+ res.render('users/admin-product',{title:'add product'} );
+});
+
+router.post('/admin-product', (req, res) =>{
+  req.flash('succes_msg', 'Product added');
+  res.redirect('/');
 });
 
 // User Payment POST
