@@ -14,12 +14,30 @@ const Order = mongoose.model('orders');
 
 // Admin Order management Route
 router.get('/orderManagement', (req, res) => {
-  res.render('orders/orderManagement');
+  var orderArray = Order.find();
+  var allOrders = [];
+  orderArray.exec(function(err, orders){
+    if(err)
+      return consol.log(err);
+    orders.forEach(function(order){
+      var elem = new Object();
+      elem["orderID"] = order._id;
+      elem["userID"] = order.userID;
+      elem["orderAddress"] = order.orderAddress;
+      elem["price"] = order.price;
+      elem["orderStatus"] = order.orderStatus;
+
+      allOrders.push(elem);
+      console.log(elem);
+    });
+  res.render('orders/orderManagement', {orders: allOrders});
+  });
 });
 
 // User Order Route
 router.get('/myorder', (req, res) => {
   res.render('orders/orderManagement');
+
 });
 
 module.exports = router;
