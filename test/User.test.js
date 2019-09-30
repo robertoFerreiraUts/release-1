@@ -23,17 +23,14 @@ test('Should signup a new user', async() => {
         password2: 'jack123'
         
     }).expect(302)
-   
-
-
 })
    
 
 test('Should not signup with unmatched password', async() => {
     await request(app).post('/users/register').send({
-        firstname: 'Jack',
-        lastname: 'joso',
-        email: 'jack2js@mail.com',
+        firstname: 'dos',
+        lastname: 'ss',
+        email: 'jack2ss@mail.com',
         password: 'jack123',
         password2: 'jack12s'
     }).expect(200)
@@ -41,7 +38,7 @@ test('Should not signup with unmatched password', async() => {
 
 test('Should login existing user', async() => {
     await request(app).post('/users/login').send({
-        email: 'jack2js@mail.com',
+        email: 'jack2ss@mail.com',
         password: 'jack123'
     }).expect(302)
 })
