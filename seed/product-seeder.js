@@ -1,7 +1,7 @@
 var Product = require('../models/product');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/shopping',{ useNewUrlParser: true });
+mongoose.connect('mongodb://127.0.0.1:27017/LocalDev',{ useNewUrlParser: true });
 
 
 
