@@ -1,6 +1,6 @@
 <div class="row" align="center">
   <div class="card card-body">
-    <h3 class="text-center">Order Log</h3>
+    <h3 class="text-center">Your Orders</h3>
     <style type="text/css">
         .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
         .tg td{padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
@@ -21,8 +21,7 @@
           <td class="tg-abip">Email</td>
           <td class="tg-abip">Price</td>
           <td class="tg-abip">Delivery Status</td>
-          <td class="tg-abip">Edit</td>
-          <td class="tg-abip"></td> <!--save button -->
+          <!-- <td class="tg-abip">Edit</td> -->
         </tr>
         <tr>
           {{#each orders as |order|}}
@@ -33,13 +32,6 @@
             <td class="tg-c3ow" name="orderAddress">{{order.orderAddress}}</td>
             <td class="tg-c3ow" name="price">{{order.price}}</td>
             <td class="tg-c3ow" name="orderStatus">{{order.orderStatus}}</td>
-            <td class="tg-c3ow" name="changedStatus">
-              <select name="changedStatus" value="Not Delivered">
-                <option value="Not delivered">Not delivered</option>
-                <option value="Delivered">Delivered</option>
-              </select>
-            </td>
-            <td class="tg-c3ow"><button type="submit" class="btn btn-success">Save</button></td>
         </tr>
         </form>
         {{/each}}

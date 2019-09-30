@@ -7,7 +7,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/LocalDev',{ useNewUrlParser: true })
 
 var products =
 [
-    
+
     new Product({
     imagePath: 'images/card2.jpeg',
     title: 'Rice-been',
@@ -37,7 +37,7 @@ new Product({
     title: 'Rice-been',
     description: 'Awesome rice!!!!',
     price: 40
-}), 
+}),
 
 new Product({
     imagePath: 'images/card1.png',
@@ -64,4 +64,3 @@ for(var i=0; i<products.length; i++){
 function exit(){
     mongoose.disconnect();
 }
-

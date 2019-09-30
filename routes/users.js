@@ -24,7 +24,6 @@ router.get('/areusure', ensureAuthenticated , (req, res) => {
 });
 
 
-
 // User Register Route
 router.get('/register', (req, res) => {
   res.render('users/register');
