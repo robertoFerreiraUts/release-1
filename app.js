@@ -21,7 +21,7 @@ const db = require('./config/database');
 // Load routes
 const users = require('./routes/users');
 const orders = require('./routes/orders');
-const payment = require('./routes/payment')
+const payment = require('./routes/payment');
 const delivery = require('./routes/delivery');
 
 
@@ -100,10 +100,6 @@ app.use(function(req, res, next){
 // About Route
 app.get('/about', (req, res) => {
   res.render('about');
-});
-
-app.get('/payment', (req, res) => {
-  res.render('payment');
 });
 
 app.get('/delivery', (req, res) => {
