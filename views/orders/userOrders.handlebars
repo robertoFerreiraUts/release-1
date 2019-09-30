@@ -1,0 +1,55 @@
+<div class="row" align="center">
+  <div class="card card-body">
+    <h3 class="text-center">Your Orders</h3>
+    <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+        .tg td{padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+        .tg th{font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+        .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+        .tg .tg-abip{background-color:#f9f9f9;border-color:inherit;text-align:center;vertical-align:top}
+        .tg .tg-dzk6{background-color:#f9f9f9;text-align:center;vertical-align:top}
+    </style>
+    <div>
+      <div style="display: inline-block">
+      <table class="tg">
+        <tr>
+          <th class="tg-c3ow" colspan="7">Orders</th>
+        </tr>
+        <tr>
+          <td class="tg-abip">OrderID</td>
+          <td class="tg-abip">UserID</td>
+          <td class="tg-abip">Email</td>
+          <td class="tg-abip">Price</td>
+          <td class="tg-abip">Delivery Status</td>
+          <!-- <td class="tg-abip">Edit</td> -->
+        </tr>
+        <tr>
+          {{#each orders as |order|}}
+          <form action="/orders/orderManagement/{{order.orderID}}?_method=PUT" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <td class="tg-c3ow" name="orderID">{{order.orderID}}</td>
+            <td class="tg-c3ow" name="userID">{{order.userID}}</td>
+            <td class="tg-c3ow" name="orderAddress">{{order.orderAddress}}</td>
+            <td class="tg-c3ow" name="price">{{order.price}}</td>
+            <td class="tg-c3ow" name="orderStatus">{{order.orderStatus}}</td>
+        </tr>
+        </form>
+        {{/each}}
+      </table>
+    </div>
+    <!-- <div style="display: inline-block; vertical-align: top;">
+      <h6>Search</h6>
+      <form action="/users/privilege/" method="get">
+        <input type="text" name="searchEmail" placeholder="Search by email...">
+        <button type="submit" class="btn btn-success">Search</button>
+      </form>
+    </div> -->
+    </div>
+      <br>
+    <div display="inline" margin="5px">
+      <a href="/">
+        <button class="btn btn-success">Home</button>
+      </a>
+    </div>
+  </div>
+</div>

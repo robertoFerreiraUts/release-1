@@ -102,6 +102,10 @@ app.get('/about', (req, res) => {
   res.render('about');
 });
 
+app.get('/payment', (req, res) => {
+  res.render('payment');
+});
+
 app.get('/delivery', (req, res) => {
   res.render('delivery');
 });

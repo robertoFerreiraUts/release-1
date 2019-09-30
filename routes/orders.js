@@ -16,29 +16,73 @@ const User = mongoose.model('users');
 
 // Admin Order management Route
 router.get('/orderManagement/:id', (req, res) => {
-  //check if admin or not
-  // User.findOne({
-  //   _id: mongoose.Types.ObjectId(req.params.id)
-  // })
-  // .then(user => {
-  //   if (user.privilege.equals("1")
-  // })
-  var orderArray = Order.find();
-  var allOrders = [];
-  orderArray.exec(function(err, orders){
-    if(err)
-      return consol.log(err);
-    orders.forEach(function(order){
-      var elem = new Object();
-      elem["orderID"] = order._id;
-      elem["userID"] = order.userID;
-      elem["orderAddress"] = order.orderAddress;
-      elem["price"] = order.price;
-      elem["orderStatus"] = order.orderStatus;
-      allOrders.push(elem);
-    });
-  res.render('orders/orderManagement', {orders: allOrders});
-  });
+  // check if admin or not
+  User.findOne({
+    _id: mongoose.Types.ObjectId(req.params.id)
+  })
+  .then(user => {
+    if (user.privilege == "4") {
+      var orderArray = Order.find();
+      var allOrders = [];
+      orderArray.exec(function(err, orders){
+        if(err)
+          return consol.log(err);
+        orders.forEach(function(order){
+          var elem = new Object();
+          elem["orderID"] = order._id;
+          elem["userID"] = order.userID;
+          elem["orderAddress"] = order.orderAddress;
+          elem["price"] = order.price;
+          elem["orderStatus"] = order.orderStatus;
+          allOrders.push(elem);
+          });
+        });
+        res.render('orders/orderManagement', {orders: allOrders});
+    }
+     else{
+      var orderArray = Order.find({ userID: user._id});
+      var allOrders = [];
+      orderArray.exec(function(err, orders){
+        if(err)
+          return consol.log(err);
+        orders.forEach(function(order){
+          var elem = new Object();
+          elem["orderID"] = order._id;
+          elem["userID"] = order.userID;
+          elem["orderAddress"] = order.orderAddress;
+          elem["price"] = order.price;
+          elem["orderStatus"] = order.orderStatus;
+          allOrders.push(elem);
+          });
+        });
+
+        res.render('orders/userOrders', {orders: allOrders});
+    }
+  })
+  // var allOrders = [];
+  // orderArray.exec(function(err, orders){
+  //   if(err)
+  //     return consol.log(err);
+  //   orders.forEach(function(order){
+  //     var elem = new Object();
+  //     elem["orderID"] = order._id;
+  //     elem["userID"] = order.userID;
+  //     elem["orderAddress"] = order.orderAddress;
+  //     elem["price"] = order.price;
+  //     elem["orderStatus"] = order.orderStatus;
+  //     allOrders.push(elem);
+  //     });
+  //   });
+    // User.findOne({
+    //   _id: mongoose.Types.ObjectId(req.params.id)
+    // })
+    // .then(user => {
+    //   if (user.privilege == "4") {
+    //     res.render('orders/orderManagement', {orders: allOrders});
+    //   } else {
+    //     res.render('orders/userOrders', {orders: allOrders});
+    //   }
+  // });
 });
 
 // Admin Order management post
