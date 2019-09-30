@@ -13,7 +13,6 @@ const OrderSchema = mongoose.Schema({
   },
   price:{
     type: String,
-    unique: true,
     required: true
   },
   orderStatus:{
