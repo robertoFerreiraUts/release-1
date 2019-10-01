@@ -9,11 +9,6 @@ const router = express.Router();
 require('../models/payment');
 const Del = mongoose.model('payment');
 
-// User Login Route
-router.get('/payment', (req, res) => {
-  res.render('/payment');
-});
-
 // Register Form POST
 router.post('/payment', (req, res) => {
   let errors = [];
@@ -41,7 +36,9 @@ router.post('/payment', (req, res) => {
     expiredate: req.body.expiredate,
     securitycode: req.body.securitycode,
     phonenum: req.body.phonenum,
-    emailaddress: req.body.emailaddress
+    emailaddress: req.body.emailaddress,
+    totalprice: req.body.totalPrice,
+    totalqty: req.body.totalQty,
   });
   var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
@@ -55,7 +52,7 @@ var mailOptions = {
   from: 'easygomailing@gmail.com',
   to: req.body.emailaddress,
 subject: 'Payment Confirmation',
-text: 'Succesful payment!'
+text: "This is confirmation of your EasyGo Payment!. You purchased a total of " + req.body.totalqty + " items for a total price of $" + req.body.totalprice
 }
 
 transporter.sendMail(mailOptions, function(error, info){

@@ -110,6 +110,10 @@ app.get('/delivery', (req, res) => {
   res.render('delivery');
 });
 
+app.get('/payment', (req, res) => {
+  res.render('payment');
+});
+
 app.get('/courier', (req, res) => {
   res.render('courier');
 });
