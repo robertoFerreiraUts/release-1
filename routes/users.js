@@ -329,20 +329,17 @@ router.post('/reset/:token', function(req, res) {
   });
 });
 
-const upload = multer ({
+const upload = multer({
   limits: {
-    fileSize: 1000000
- },
- fileFilter(req, file, cb) {
-   if(!file.originalname.endsWith('.jpg')) {
-     return cb(new Error('Please upload an image'))
-   }
-   cb(undefined, true)
-    
-   // cb(new Error('File must be a image'))
-   // cb(undefined, true)
-   // cb(undefined, false)
- }
+      fileSize: 10000000
+  },
+  fileFilter(req, file, cb) {
+      if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+          return cb(new Error('Please upload an image'))
+      }
+
+      cb(undefined, true)
+  }
 })
 
 router.post('/avatar', ensureAuthenticated, upload.single('avatar'), async (req,res) => {
