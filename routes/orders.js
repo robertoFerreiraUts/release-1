@@ -37,9 +37,9 @@ router.get('/orderManagement/:id', (req, res) => {
           elem["orderStatus"] = order.orderStatus;
           allOrders.push(elem);
           console.log(elem);
-          });
         });
         res.render('orders/orderManagement', {orders: allOrders});
+      });
     }
      else{
       console.log("user is not admin");
@@ -58,9 +58,8 @@ router.get('/orderManagement/:id', (req, res) => {
           console.log(elem);
           allOrders.push(elem);
           });
-        });
-
         res.render('orders/userOrders', {orders: allOrders});
+        });
     }
   })
   // var allOrders = [];
