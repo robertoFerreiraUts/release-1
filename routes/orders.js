@@ -22,6 +22,7 @@ router.get('/orderManagement/:id', (req, res) => {
   })
   .then(user => {
     if (user.privilege == "4") {
+      console.log("user is admin");
       var orderArray = Order.find();
       var allOrders = [];
       orderArray.exec(function(err, orders){
@@ -35,11 +36,13 @@ router.get('/orderManagement/:id', (req, res) => {
           elem["price"] = order.price;
           elem["orderStatus"] = order.orderStatus;
           allOrders.push(elem);
+          console.log(elem);
           });
         });
         res.render('orders/orderManagement', {orders: allOrders});
     }
      else{
+      console.log("user is not admin");
       var orderArray = Order.find({ userID: user._id});
       var allOrders = [];
       orderArray.exec(function(err, orders){
@@ -52,6 +55,7 @@ router.get('/orderManagement/:id', (req, res) => {
           elem["orderAddress"] = order.orderAddress;
           elem["price"] = order.price;
           elem["orderStatus"] = order.orderStatus;
+          console.log(elem);
           allOrders.push(elem);
           });
         });
