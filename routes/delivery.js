@@ -60,6 +60,7 @@ router.post('/delivery', (req, res) => {
 });
 
 
+var xID;
 router.post('/deliveryDT', (req, res) => {
   const newUser = new Del({
     streetNumber: del4Date.streetNumber,
@@ -70,19 +71,24 @@ router.post('/deliveryDT', (req, res) => {
     DeliveryDate: req.body.DeliveryDate,
     DeliveryTime: req.body.DeliveryTime
   });
-  newUser.save()
-  .then(user => {
+  newUser.save(function(err){
+    console.log(newUser._id)
+    xID = newUser._id;
     var payDel = [];
         var elem = new Object();
-        elem["id"] = newUser.streetName;
+        elem["id"] = xID;
   
+        console.log("Xid: " + xID);
         payDel.push(elem);
         console.log(payDel);
         if (payDel.length > 0) {
         res.render('payment', {delivery: payDel});
         }
     del4Date = null;
-  })
+ })/*
+  .then(user => {
+    
+  }) */
 });
 
 module.exports = router;
