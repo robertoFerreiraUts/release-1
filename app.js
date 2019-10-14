@@ -124,6 +124,8 @@ app.get('/deliveryDT', (req, res) => {
 app.get('/deliveryTracking', (req, res) => {
   res.render('deliveryTracking');
 });
+
+
 app.get('/deliveryFree', (req, res) => {
   res.render('deliveryFree');
 });

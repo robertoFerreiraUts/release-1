@@ -15,13 +15,26 @@ router.get('/delivery', (req, res) => {
   res.render('/delivery');
 });
 router.get('/deliveryTracking', (req, res) => {
-  var ID = req.body.deliveryID;
-    Del.findOne({postcode:[ID]}, function(err, item) {  
-        if (item == null) {console.log("Incorrect ID")}
-        else {
-          console.log("Delivery Found");
-        }
-    })
+  var ID = req.query.id;
+  var objID = mongoose.Types.ObjectId(ID);
+    Del.findOne({_id:[objID]}, function(err, item) {  
+      //console.log("FOUND: " + item)
+      
+      var trackDel = [];
+      var elem = new Object();
+      elem["streetName"] = item.streetName;
+      elem["streetNum"] = item.streetNumber;
+      elem["suburb"] = item.suburb;
+      elem["postcode"] = item.postcode;
+      elem["state"] = item.state;
+      elem["date"] = item.estDel;
+
+      trackDel.push(elem);
+      console.log(trackDel);
+      if (trackDel.length > 0) {
+      res.render('deliveryTracking', {delivery: trackDel});
+      }
+    });
 });
 
 
