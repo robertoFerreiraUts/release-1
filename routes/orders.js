@@ -48,6 +48,9 @@ router.get('/orderManagement/:id', (req, res) => {
           req.flash('error_msg', 'UserID must be 24 characters');
           res.redirect(303, '/orders/orderManagement/'+req.params.id);
           //res.render('orders/orderManagement', {orders: allOrders});
+        } else if (allOrders.length == 0) {
+          req.flash('error_msg', 'Search Failed');
+          res.redirect(303, '/orders/orderManagement/'+req.params.id);
         } else {
         res.render('orders/orderManagement', {orders: allOrders});
         }

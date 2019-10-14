@@ -48,11 +48,15 @@ var transporter = nodemailer.createTransport({
     pass: 'n20j15n17'
   }
 })
+
+let error = [];
+var card = req.body.cardnum;
+var splitcard = card.substr(card.length - 4);
 var mailOptions = {
   from: 'easygomailing@gmail.com',
   to: req.body.emailaddress,
 subject: 'Payment Confirmation',
-text: "This is confirmation of your EasyGo Payment!. You purchased a total of " + req.body.totalqty + " items for a total price of $" + req.body.totalprice
+text: "This is confirmation of your EasyGo Payment!." + "\n" + "You purchased a total of " + req.body.totalqty + " items for a total price of $" + req.body.totalprice + "\n" + "Confirm your payment details below:" + "\n" + "Card Number: ####-####-####-" + splitcard + "\n" + "Phone Number: " + req.body.phonenum
 }
 
 transporter.sendMail(mailOptions, function(error, info){
