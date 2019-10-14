@@ -16,14 +16,20 @@ const User = mongoose.model('users');
 
 // Admin Order management Route
 router.get('/orderManagement/:id', (req, res) => {
+    var searchID = req.query.searchID;
   // check if admin or not
   User.findOne({
     _id: mongoose.Types.ObjectId(req.params.id)
   })
   .then(user => {
     if (user.privilege == "4") {
+      if (searchID == null || searchID == "") { // check if search is empty
+        var orderArray = Order.find();
+      } else {
+        var orderArray = Order.find({ userID: searchID }); //search by email
+      }
       console.log("user is admin");
-      var orderArray = Order.find();
+      //var orderArray = Order.find();
       var allOrders = [];
       orderArray.exec(function(err, orders){
         if(err)
@@ -38,10 +44,16 @@ router.get('/orderManagement/:id', (req, res) => {
           allOrders.push(elem);
           console.log(elem);
         });
+        if (req.query.searchID != null && req.query.searchID != "" && req.query.searchID.length != 24) {
+          req.flash('error_msg', 'UserID must be 24 characters');
+          res.redirect(303, '/orders/orderManagement/'+req.params.id);
+          //res.render('orders/orderManagement', {orders: allOrders});
+        } else {
         res.render('orders/orderManagement', {orders: allOrders});
+        }
       });
     }
-     else{
+     else {
       console.log("user is not admin");
       var orderArray = Order.find({ userID: user._id});
       var allOrders = [];
@@ -124,7 +136,7 @@ router.post('/createOrder/:id', (req, res) => {
     const newOrder = new Order({
       userID: user._id,
       orderAddress: user.email,
-      price: "10",
+      price: req.body.price,
       orderStatus: "Not Delivered"
     });
     newOrder.save()
