@@ -1,5 +1,11 @@
 <center>
       <h3 class="text-center">Payment</h3>
+
+      
+{{#each delivery as |del|}}
+<b>{{del.id}}</b>
+{{/each}}
+
       <form id="pay" action="/payment/payment" method="post">
         <div class="form-group">
           <label for="cardnum">Card Number</label>

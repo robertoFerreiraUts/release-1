@@ -37,6 +37,7 @@ router.get('/deliveryTracking', (req, res) => {
     });
 });
 
+var del4Date;
 
 // Register Form POST
 router.post('/delivery', (req, res) => {
@@ -47,24 +48,41 @@ router.post('/delivery', (req, res) => {
     postcode: req.body.postcode,
     state: req.body.state
   });
+  del4Date = newUser;
+  /*
   newUser.save()
+  
   .then(user => {
+    */
     res.redirect('/courier');
-  })
+  //})
   
 });
 
 
 router.post('/deliveryDT', (req, res) => {
   const newUser = new Del({
+    streetNumber: del4Date.streetNumber,
+    streetName: del4Date.streetName,
+    suburb: del4Date.suburb,
+    postcode: del4Date.postcode,
+    state: del4Date.state,
     DeliveryDate: req.body.DeliveryDate,
     DeliveryTime: req.body.DeliveryTime
   });
   newUser.save()
   .then(user => {
-    res.redirect('/payment');
-  })
+    var payDel = [];
+        var elem = new Object();
+        elem["id"] = newUser.streetName;
   
+        payDel.push(elem);
+        console.log(payDel);
+        if (payDel.length > 0) {
+        res.render('payment', {delivery: payDel});
+        }
+    del4Date = null;
+  })
 });
 
 module.exports = router;
