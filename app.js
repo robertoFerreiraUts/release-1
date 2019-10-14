@@ -8,8 +8,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-
-
+const recipesController = require('./controller/Recipes');
+const RecipeModel = require('./models/Recipes');
 
 
 var indexRouter = require('./routes/index');
@@ -78,6 +78,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.post('testing', (req, res) => {
+  res.send("hello world");
+})
+
 app.use(flash());
 
 // Global variables
@@ -89,6 +93,8 @@ app.use(function(req, res, next){
   next();
 });
 
+
+
 // Index Route
 //app.get('/', (req, res) => {
  // const title = 'Welcome';
@@ -96,6 +102,36 @@ app.use(function(req, res, next){
  // title: title
 //  });
 //});
+
+// // All Recipes
+app.get('/recipes/recipeslist', (req, res) => {
+  res.render('recipes/recipes');
+});
+
+// Chicken Recipes
+app.get('/recipes/chicken', (req, res) => {
+  res.render('recipes/chicken');
+});
+
+// Beef Recipes
+app.get('/recipes/beef', (req, res) => {
+  res.render('recipes/beef');
+});
+
+// Vegetarian Recipes
+app.get('/recipes/vegetarian', (req, res) => {
+  res.render('recipes/vegetarian');
+});
+
+// Dessert Recipes
+app.get('/recipes/dessert', (req, res) => {
+  res.render('recipes/dessert');
+});
+
+// Dessert Recipes
+app.get('/recipes/CreateRecipe', (req, res) => {
+  res.render('recipes/CreateRecipe');
+});
 
 // About Route
 app.get('/about', (req, res) => {
@@ -138,8 +174,34 @@ app.use('/delivery', delivery);
 
 app.use('/', indexRouter);
 
-//Load 404 page (if page is not exist!)
+app.post('recipess/searchRecipes', (req, res) => {
+
+  const searchValue = req.body.searchValue;
+
+  RecipeModel
+      .find({"item": /searchValue/})
+      .exec((data, err) => {
+          if(err) return res.send(err);
+          res.status(200).json(data);
+      });
+
+});
+
+//controllers
+recipesController(app);
+
+// //Load 404 page (if page is not exist!)
 app.use((req ,res) => res.render('not_found'));
 
 
+<<<<<<< Updated upstream
 module.exports = app
+=======
+const port = process.env.PORT || 5000;
+
+app.listen(port, () =>{
+  console.log(`Server started on port ${port}`);
+});
+
+module.exports = app;
+>>>>>>> Stashed changes
