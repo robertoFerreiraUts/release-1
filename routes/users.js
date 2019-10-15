@@ -24,16 +24,11 @@ router.get('/areusure', ensureAuthenticated , (req, res) => {
 });
 
 
-
 // User Register Route
 router.get('/register', (req, res) => {
   res.render('users/register');
 });
 
-// User Payment Route
-router.get('/payment', (req, res) => {
-  res.render('users/payment');
-});
 
 // admin-product route
 router.get('/admin-product', function(req, res, next) {
@@ -45,11 +40,7 @@ router.post('/admin-product', (req, res) =>{
   res.redirect('/');
 });
 
-// User Payment POST
-router.post('/payment', (req, res, next) => {
-  req.flash('success_msg', 'Payment Successful');
-  res.redirect('/');
-});
+
 
 //User Update Route
 router.get('/edit/:id', ensureAuthenticated, (req, res) => {
@@ -338,27 +329,24 @@ router.post('/reset/:token', function(req, res) {
   });
 });
 
-const upload = multer ({
+const upload = multer({
   limits: {
-    fileSize: 1000000
- },
- fileFilter(req, file, cb) {
-   if(!file.originalname.endsWith('.jpg')) {
-     return cb(new Error('Please upload an image'))
-   }
-   cb(undefined, true)
-    
-   // cb(new Error('File must be a image'))
-   // cb(undefined, true)
-   // cb(undefined, false)
- }
+      fileSize: 10000000
+  },
+  fileFilter(req, file, cb) {
+      if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+          return cb(new Error('Please upload an image'))
+      }
+
+      cb(undefined, true)
+  }
 })
 
 router.post('/avatar', ensureAuthenticated, upload.single('avatar'), async (req,res) => {
    const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
    req.user.avatar = buffer
   await req.user.save()
-  req.flash('success_msg', 'Success! Your profile image was updated');
+  req.flash('success_msg', 'Highfive! You have successfully changed your profile picture');
   res.redirect("/users/edit")
 }, (error, req, res, next) => {
   req.flash('error_msg', 'Error! Please upload an image');

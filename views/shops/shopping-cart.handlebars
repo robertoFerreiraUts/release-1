@@ -1,19 +1,21 @@
+
 {{# if products}}
+
 <div class="container cart-columns" style="margin-top: 20px;">
 <div class="row">
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
         <ul class="list-group">
              {{# each products}}
              <li class="list-group-item">
-           
+
             <span class="badge">{{this.qty}}</span>
             <strong> {{this.item.title}} </strong>
             <span class="label label-success">${{this.price}}</span>
-            
-            
+
+
             <div class="btn-group">
 
-                    
+
 
                 <div>
                 <button class="btn btn-primary btn-xs" type="button">
@@ -29,32 +31,67 @@
                 </button>
                 </div>
 
-                
+
             </div>
-            
+
                </li>
             {{/ each}}
-           
+
 
 
         </ul>
     </div>
 </div>
 
-<div class="row">
+
+</div>
+<center>
+      <h3 class="text-center">Payment</h3>
+        <form id="pay" action="/payment/payment" method="post">
+        <div class="form-group">
+          <label for="cardnum">Card Number</label>
+          <input type="text" class="form-control" name="cardnum" value="{{cardnum}}" style="width: 300px;">
+        </div>
+        <div class="form-group">
+          <label for="expiredate">Expiration Date</label>
+          <input type="month" class="form-control" name="expiredate" value="{{expiredate}}"style="width: 200px;">
+        </div>
+        <div class="form-group">
+          <label for="securitycode">Security Code</label>
+          <input type="text" class="form-control" name="securitycode" value="{{securitycode}}"style="width: 75px;">
+        </div>
+        <div class="form-group">
+          <label for="phonenum">Phone Number</label>
+          <input type="text" class="form-control" name="phonenum" value="{{phonenum}}"style="width: 300px;">
+        </div>
+        <div class="form-group">
+          <label for="emailaddress">Email Address</label>
+          <input type="text" class="form-control" name="emailaddress" value="{{emailaddress}}" style="width: 300px;">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="row">
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
         <strong>  Total qty:  {{ totalQty }} </strong>
+        <input type="hidden"  name="totalqty" value="{{totalQty}}" style="width: 300px;">
     </div>
 
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
         <strong>  Total amount: $ {{ totalPrice }} </strong>
+        <input type="hidden"  name="totalprice" value="{{totalPrice}}" style="width: 300px;">
     </div>
+    </form>
 </div>
+</center>
 
 <div class="row">
     <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-       <button type="button" class="btn btn-success text-white"><a href="/payment" class="text-white">Checkout</a> </button>
+        <button type="button" class="btn btn-success text-white"><a href="/payment" class="text-white">Checkout</a> </button>
     </div>
+    <!-- Create order for order log -->
+    <form action="/orders/createOrder/{{user.id}}?_method=POST" method="POST">
+      <input type="hidden" name="price" value={{totalPrice}}>
+      <button type="submit" class="btn btn-success text-white">Create order</button>
+    </form>
 </div>
 </div>
 
@@ -75,13 +112,6 @@
 
 
 
-    
+
 
 {{/ if}}
-
-
-
-
-
-
-

@@ -21,7 +21,7 @@ const db = require('./config/database');
 // Load routes
 const users = require('./routes/users');
 const orders = require('./routes/orders');
-const payment = require('./routes/payment')
+const payment = require('./routes/payment');
 const delivery = require('./routes/delivery');
 
 
@@ -140,6 +140,10 @@ app.get('/delivery', (req, res) => {
   res.render('delivery');
 });
 
+app.get('/payment', (req, res) => {
+  res.render('payment');
+});
+
 app.get('/courier', (req, res) => {
   res.render('courier');
 });
@@ -150,6 +154,8 @@ app.get('/deliveryDT', (req, res) => {
 app.get('/deliveryTracking', (req, res) => {
   res.render('deliveryTracking');
 });
+
+
 app.get('/deliveryFree', (req, res) => {
   res.render('deliveryFree');
 });
@@ -169,8 +175,4 @@ app.use('/', indexRouter);
 app.use((req ,res) => res.render('not_found'));
 
 
-const port = process.env.PORT || 5000;
-
-app.listen(port, () =>{
-  console.log(`Server started on port ${port}`);
-});
+module.exports = app

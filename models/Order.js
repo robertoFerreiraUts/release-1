@@ -13,7 +13,6 @@ const OrderSchema = mongoose.Schema({
   },
   price:{
     type: String,
-    unique: true,
     required: true
   },
   orderStatus:{
@@ -21,6 +20,5 @@ const OrderSchema = mongoose.Schema({
     required: true
   }
 });
-
 
 module.exports = mongoose.model('orders', OrderSchema);
