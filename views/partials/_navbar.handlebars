@@ -35,6 +35,20 @@
                     </li>
                 <!--..........!-->
 
+            <li class="nav-item dropdown">
+              <a class="nav-link  text-white dropdown-toggle" href="recipes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Recepies
+                <div class="dropdown-menu">
+                    {{!-- <a href="/recipes/CreateRecipe" class="nav-link">Create Recipe</a> --}}
+                    <a href="/recipes/recipeslist" class="nav-link">All Recipes</a>
+                    <a href="/recipes/chicken" class="nav-link">Chicken</a>
+                    <a href="/recipes/beef" class="nav-link">Beef</a>
+                    <a href="/recipes/vegetarian" class="nav-link">Vegetarian</a>
+                    <a href="/recipes/dessert" class="nav-link">Dessert</a>
+                    
+              </a>
+            </li>
+
                 
                       {{#if user}}
              
