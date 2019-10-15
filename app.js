@@ -97,6 +97,36 @@ app.use(function(req, res, next){
 //  });
 //});
 
+// All Recipes
+app.get('/recipes/recipeslist', (req, res) => {
+  res.render('recipes/recipes');
+});
+
+// Chicken Recipes
+app.get('/recipes/chicken', (req, res) => {
+  res.render('recipes/chicken');
+});
+
+// Beef Recipes
+app.get('/recipes/beef', (req, res) => {
+  res.render('recipes/beef');
+});
+
+// Vegetarian Recipes
+app.get('/recipes/vegetarian', (req, res) => {
+  res.render('recipes/vegetarian');
+});
+
+// Dessert Recipes
+app.get('/recipes/dessert', (req, res) => {
+  res.render('recipes/dessert');
+});
+
+// Create Recipe
+// app.get('/recipes/CreateRecipe', (req, res) => {
+//   res.render('recipes/CreateRecipe');
+// });
+
 // About Route
 app.get('/about', (req, res) => {
   res.render('about');
@@ -137,6 +167,9 @@ app.use('/orders', orders);
 app.use('/delivery', delivery);
 
 app.use('/', indexRouter);
+
+// controllers
+// recipesController(app);
 
 //Load 404 page (if page is not exist!)
 app.use((req ,res) => res.render('not_found'));
