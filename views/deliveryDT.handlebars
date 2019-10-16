@@ -5,7 +5,7 @@
   </h2>
   <p style="font-weight: bold;">Please select your delivery day:</p>
   <select name="DeliveryDate" id="DeliveryDate" value="{{DeliveryDate}}" required>
-  <option value="Date+2"> <p id="Day2">18/9</p> </option>
+  <option value="Date+2" id="Day1"> </option>
   </select>
   <p></p>
   <p style="font-weight: bold;">Please select your estimated delivery time:</p>
@@ -25,6 +25,6 @@
 <script>
   window.onload = function() {
   var today = new Date();
-  document.getElementById("Day1").innerHTML = ""+ ( today.getDate() + 1 ) + "/" +  today.getMonth();
+  document.getElementById("Day1").innerHTML = ""+ ( today.getDate() + 1 ) + "/" +  ( today.getMonth() + 1 );
   }
 </script>

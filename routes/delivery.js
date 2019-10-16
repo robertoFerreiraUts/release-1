@@ -27,7 +27,7 @@ router.get('/deliveryTracking', (req, res) => {
       elem["suburb"] = item.suburb;
       elem["postcode"] = item.postcode;
       elem["state"] = item.state;
-      elem["date"] = item.estDel;
+      elem["date"] = item.DeliveryTime +  ' on the ' + item.DeliveryDate;
 
       trackDel.push(elem);
       console.log(trackDel);
@@ -71,6 +71,26 @@ router.post('/deliveryDT', (req, res) => {
     DeliveryDate: req.body.DeliveryDate,
     DeliveryTime: req.body.DeliveryTime
   });
+  if (newUser.DeliveryDate != null) {
+    var formDate;
+    var today = new Date();
+    if (newUser.DeliveryDate == 'Date+4') {
+      formDate = ( today.getDate() + 4 ) + "/" + ( today.getMonth() + 1);
+      newUser.DeliveryDate = formDate;
+    }
+    if (newUser.DeliveryDate == 'Date+3') {
+      formDate = ( today.getDate() + 3 ) + "/" + ( today.getMonth() + 1);
+      newUser.DeliveryDate = formDate;
+    }
+    if (newUser.DeliveryDate == 'Date+2') {
+      formDate = ( today.getDate() + 2 ) + "/" + ( today.getMonth() + 1);
+      newUser.DeliveryDate = formDate;
+    }
+    if (newUser.DeliveryDate == 'Date+1') {
+      formDate = ( today.getDate() + 1 ) + "/" + ( today.getMonth() + 1);
+      newUser.DeliveryDate = formDate;
+    }
+  };
   newUser.save(function(err){
     console.log(newUser._id)
     xID = newUser._id;
