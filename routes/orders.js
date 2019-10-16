@@ -16,8 +16,8 @@ const User = mongoose.model('users');
 
 // Admin Order management Route
 router.get('/orderManagement/:id', (req, res) => {
-    var searchID = req.query.searchID;
-    var searchedStatus = req.query.searchedStatus;
+  var searchID = req.query.searchID;
+  var searchedStatus = req.query.searchedStatus;
   // check if admin or not
   User.findOne({
     _id: mongoose.Types.ObjectId(req.params.id)
@@ -39,8 +39,6 @@ router.get('/orderManagement/:id', (req, res) => {
       //var orderArray = Order.find();
       var allOrders = [];
       orderArray.exec(function(err, orders){
-        if(err)
-          return consol.log(err);
         orders.forEach(function(order){
           var elem = new Object();
           elem["orderID"] = order._id;
@@ -68,8 +66,6 @@ router.get('/orderManagement/:id', (req, res) => {
       var orderArray = Order.find({ userID: user._id});
       var allOrders = [];
       orderArray.exec(function(err, orders){
-        if(err)
-          return consol.log(err);
         orders.forEach(function(order){
           var elem = new Object();
           elem["orderID"] = order._id;
@@ -88,6 +84,7 @@ router.get('/orderManagement/:id', (req, res) => {
 
 // Admin Order management post - update order status
 router.put('/orderManagement/:id', (req, res) => {
+
   Order.findOne({
     _id: mongoose.Types.ObjectId(req.params.id)
   })
@@ -96,7 +93,7 @@ router.put('/orderManagement/:id', (req, res) => {
     order.save()
       .then(order => {
         req.flash('success_msg', 'Delivery Status updated');
-        res.redirect(303, '/orders/orderManagement');
+        res.redirect(303, '/orders/orderManagement/'+req.params.id);
       })
   });
 });
