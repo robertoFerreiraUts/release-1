@@ -84,7 +84,7 @@ router.get('/orderManagement/:id', (req, res) => {
 
 // Admin Order management post - update order status
 router.put('/orderManagement/:id', (req, res) => {
-
+  var userID = req.body.loggedInUserID;
   Order.findOne({
     _id: mongoose.Types.ObjectId(req.params.id)
   })
@@ -93,7 +93,7 @@ router.put('/orderManagement/:id', (req, res) => {
     order.save()
       .then(order => {
         req.flash('success_msg', 'Delivery Status updated');
-        res.redirect(303, '/orders/orderManagement/'+req.params.id);
+        res.redirect(303, '/orders/orderManagement/'+userID);
       })
   });
 });
@@ -105,8 +105,6 @@ router.post('/createOrder/:id', (req, res) => {
     _id: mongoose.Types.ObjectId(req.params.id)
   })
   .then(user => {
-    if(err)
-      return consol.log(err);
     console.log(getPrice);
     const newOrder = new Order({
       userID: user._id,
