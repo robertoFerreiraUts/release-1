@@ -17,6 +17,7 @@ const User = mongoose.model('users');
 // Admin Order management Route
 router.get('/orderManagement/:id', (req, res) => {
     var searchID = req.query.searchID;
+    var searchedStatus = req.query.searchedStatus;
   // check if admin or not
   User.findOne({
     _id: mongoose.Types.ObjectId(req.params.id)
@@ -24,9 +25,15 @@ router.get('/orderManagement/:id', (req, res) => {
   .then(user => {
     if (user.privilege == "4") {
       if (searchID == null || searchID == "") { // check if search is empty
-        var orderArray = Order.find();
-      } else {
+        if (searchedStatus == "Any delivery status" || searchedStatus == null) {
+          var orderArray = Order.find();
+        } else {
+          var orderArray = Order.find({ orderStatus: searchedStatus });
+        }
+      } else if (searchedStatus == "Any delivery status") {
         var orderArray = Order.find({ userID: searchID }); //search by email
+      } else {
+        var orderArray = Order.find({ userID: searchID, orderStatus: searchedStatus });
       }
       console.log("user is admin");
       //var orderArray = Order.find();
@@ -77,33 +84,9 @@ router.get('/orderManagement/:id', (req, res) => {
         });
     }
   })
-  // var allOrders = [];
-  // orderArray.exec(function(err, orders){
-  //   if(err)
-  //     return consol.log(err);
-  //   orders.forEach(function(order){
-  //     var elem = new Object();
-  //     elem["orderID"] = order._id;
-  //     elem["userID"] = order.userID;
-  //     elem["orderAddress"] = order.orderAddress;
-  //     elem["price"] = order.price;
-  //     elem["orderStatus"] = order.orderStatus;
-  //     allOrders.push(elem);
-  //     });
-  //   });
-    // User.findOne({
-    //   _id: mongoose.Types.ObjectId(req.params.id)
-    // })
-    // .then(user => {
-    //   if (user.privilege == "4") {
-    //     res.render('orders/orderManagement', {orders: allOrders});
-    //   } else {
-    //     res.render('orders/userOrders', {orders: allOrders});
-    //   }
-  // });
 });
 
-// Admin Order management post
+// Admin Order management post - update order status
 router.put('/orderManagement/:id', (req, res) => {
   Order.findOne({
     _id: mongoose.Types.ObjectId(req.params.id)
@@ -118,16 +101,6 @@ router.put('/orderManagement/:id', (req, res) => {
   });
 });
 
-//Check if admin or not
-router.get('/accountStatusCheck/:id', (req, res) => {
-
-});
-
-// User Order Route
-router.get('/myorder', (req, res) => {
-  res.render('orders/orderManagement');
-
-});
 // Create order and redirect to payment
 router.post('/createOrder/:id', (req, res) => {
   var getPrice = req.query.price;
@@ -135,6 +108,8 @@ router.post('/createOrder/:id', (req, res) => {
     _id: mongoose.Types.ObjectId(req.params.id)
   })
   .then(user => {
+    if(err)
+      return consol.log(err);
     console.log(getPrice);
     const newOrder = new Order({
       userID: user._id,
