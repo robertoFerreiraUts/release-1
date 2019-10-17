@@ -20,7 +20,7 @@ router.get('/deliveryTracking', (req, res) => {
   var objID = mongoose.Types.ObjectId(ID);
   
     Del.findOne({_id:[objID]}, function(err, item) {  
-      if (!item) {
+      if (!item || err) {
         req.flash('error_msg', 'Delivery ID Incorrect.');
         return res.redirect('back');
       }
