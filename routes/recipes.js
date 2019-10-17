@@ -25,8 +25,8 @@ router.get('/dessert', (req, res) => {
   res.render('recipes/dessert');
 });
 
-router.get('/butterchicken', (req, res) => {
-  res.render('recipes/butterchicken');
+router.get('/recipeDetails', (req, res) => {
+  res.render('recipes/recipeDetails');
 });
 
 

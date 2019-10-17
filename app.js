@@ -112,7 +112,7 @@ app.get('/recipes/:recipe_Tag', (req, res) => {
   .find({ recipe_Tag: req.params.recipe_Tag })
   .exec((err, data) => {
     if(err) return res.send(err);
-    res.render('recipes/butterchicken', {recipeDetails: data});
+    res.render('recipes/recipeDetails', {recipeDetails: data});
   });
 });
 
@@ -136,9 +136,6 @@ app.get('/recipes/dessert', (req, res) => {
   res.render('recipes/dessert');
 });
 
-app.get('/recipes/butterchicken', (req, res) => {
-  res.render('recipes/butterchicken');
-});
 
 
 // About Route
