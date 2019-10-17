@@ -13,27 +13,31 @@
       <div style="display: inline-block">
       <table class="tg">
         <tr>
-          <th class="tg-c3ow" colspan="7">Orders</th>
+          <th class="tg-c3ow" colspan="8">Orders</th>
         </tr>
         <tr>
           <td class="tg-abip">OrderID</td>
           <td class="tg-abip">UserID</td>
           <td class="tg-abip">Email</td>
           <td class="tg-abip">Price</td>
+          <td class="tg-abip">Tracking</td>
           <td class="tg-abip">Delivery Status</td>
           <!-- <td class="tg-abip">Edit</td> -->
         </tr>
         <tr>
           {{#each orders as |order|}}
-          <form action="/orders/orderManagement/{{order.orderID}}?_method=PUT" method="POST">
-            <input type="hidden" name="_method" value="PUT">
             <td class="tg-c3ow" name="orderID">{{order.orderID}}</td>
             <td class="tg-c3ow" name="userID">{{order.userID}}</td>
             <td class="tg-c3ow" name="orderAddress">{{order.orderAddress}}</td>
             <td class="tg-c3ow" name="price">{{order.price}}</td>
+            <td class="tg-c3ow" name="price">
+              <form method="get" action='/delivery/deliveryTracking'>
+                  <input type="hidden" name="id" value="{{order.trackingID}}">
+                  <button type="submit" class="btn btn-success">Tracking</button>
+              </form>
+            </td>
             <td class="tg-c3ow" name="orderStatus">{{order.orderStatus}}</td>
         </tr>
-        </form>
         {{/each}}
       </table>
     </div>

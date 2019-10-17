@@ -12,7 +12,10 @@ const Del = mongoose.model('payment');
 // Register Form POST
 router.post('/payment', (req, res) => {
   let errors = [];
-  
+
+  console.log("Price: " +req.session.cart.totalPrice);
+  console.log("UserID: " + req.body.userID);
+  console.log("trackingID: " + req.body.trackingID);
   if (!req.body.cardnum.match("[0-9]+")) {
     errors.push({text:'Card Number must be digits'});
   }
@@ -37,8 +40,8 @@ router.post('/payment', (req, res) => {
     securitycode: req.body.securitycode,
     phonenum: req.body.phonenum,
     emailaddress: req.body.emailaddress,
-    totalprice: req.body.totalPrice,
-    totalqty: req.body.totalQty,
+    totalprice: req.session.cart.totalPrice,
+    totalqty: req.session.cart.totalQty,
   });
   var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
@@ -56,7 +59,7 @@ var mailOptions = {
   from: 'easygomailing@gmail.com',
   to: req.body.emailaddress,
 subject: 'Payment Confirmation',
-text: "This is confirmation of your EasyGo Payment!." + "\n" + "You purchased a total of " + req.body.totalqty + " items for a total price of $" + req.body.totalprice + "\n" + "Confirm your payment details below:" + "\n" + "Card Number: ####-####-####-" + splitcard + "\n" + "Phone Number: " + req.body.phonenum
+text: "This is confirmation of your EasyGo Payment!." + "\n" + "You purchased a total of " + req.session.cart.totalqty + " items for a total price of $" + req.session.cart.totalprice + "\n" + "Confirm your payment details below:" + "\n" + "Card Number: ####-####-####-" + splitcard + "\n" + "Phone Number: " + req.body.phonenum
 }
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -66,11 +69,10 @@ console.log(error);
 console.log('Email sent: ' + info.response);
 }
 });
-      
+
   newUser.save()
   .then(user => {
-    req.flash('success_msg', 'Payment Successful, Email Confirmation Sent!');
-    res.redirect('/');
+    res.redirect('/orders/createOrder/'+req.body.userID+'&'+req.body.trackingID); //changed from index to createOrder
   })
   }
 });

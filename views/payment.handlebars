@@ -1,10 +1,9 @@
 <center>
       <h3 class="text-center">Payment</h3>
 
-      
+
 {{#each delivery as |del|}}
 <b>Delivery ID: {{del.id}}</b>
-{{/each}}
 
       <form id="pay" action="/payment/payment" method="post">
         <div class="form-group">
@@ -27,6 +26,10 @@
           <label for="emailaddress">Email Address</label>
           <input type="text" class="form-control" name="emailaddress" value="{{emailaddress}}" style="width: 300px;">
         </div>
+        <input type="hidden" name="userID" value="{{../user.id}}">
+        <input type="hidden" name="trackingID" value="{{del.id}}">
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 </center>
+
+{{/each}}

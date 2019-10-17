@@ -15,11 +15,13 @@ router.get('/delivery', (req, res) => {
   res.render('/delivery');
 });
 router.get('/deliveryTracking', (req, res) => {
+  // var ID = req.query.id;
   var ID = req.query.id;
+  console.log("trackingID: " + ID);
   var objID = mongoose.Types.ObjectId(ID);
-    Del.findOne({_id:[objID]}, function(err, item) {  
+    Del.findOne({_id:[objID]}, function(err, item) {
       //console.log("FOUND: " + item)
-      
+
       var trackDel = [];
       var elem = new Object();
       elem["streetName"] = item.streetName;
@@ -51,12 +53,12 @@ router.post('/delivery', (req, res) => {
   del4Date = newUser;
   /*
   newUser.save()
-  
+
   .then(user => {
     */
     res.redirect('/courier');
   //})
-  
+
 });
 
 
@@ -97,7 +99,7 @@ router.post('/deliveryDT', (req, res) => {
     var payDel = [];
         var elem = new Object();
         elem["id"] = xID;
-  
+
         console.log("Xid: " + xID);
         payDel.push(elem);
         console.log(payDel);
@@ -107,7 +109,7 @@ router.post('/deliveryDT', (req, res) => {
     del4Date = null;
  })/*
   .then(user => {
-    
+
   }) */
 });
 

@@ -72,6 +72,7 @@ router.get('/orderManagement/:id', (req, res) => {
           elem["userID"] = order.userID;
           elem["orderAddress"] = order.orderAddress;
           elem["price"] = order.price;
+          elem["trackingID"] = order.trackingID;
           elem["orderStatus"] = order.orderStatus;
           console.log(elem);
           allOrders.push(elem);
@@ -99,22 +100,23 @@ router.put('/orderManagement/:id', (req, res) => {
 });
 
 // Create order and redirect to payment
-router.post('/createOrder/:id', (req, res) => {
-  var getPrice = req.query.price;
+router.get('/createOrder/:id&:trackingID', (req, res) => {
+  console.log("trackingID: " + req.params.trackingID);
   User.findOne({
     _id: mongoose.Types.ObjectId(req.params.id)
   })
   .then(user => {
-    console.log(getPrice);
     const newOrder = new Order({
       userID: user._id,
       orderAddress: user.email,
-      price: req.body.price,
+      price: req.session.cart.totalPrice,
+      trackingID: req.params.trackingID,
       orderStatus: "Not Delivered"
     });
     newOrder.save()
     .then(order => {
-      res.redirect('/payment');
+      req.flash('success_msg', 'Payment Successful, Email Confirmation Sent!');
+      res.redirect('/');
     })
   });
 });

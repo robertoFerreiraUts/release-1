@@ -7,6 +7,10 @@ const OrderSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  trackingID:{
+    type: String,
+    required: true
+  },
   orderAddress:{
     type: String,
     required: true
