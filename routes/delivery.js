@@ -16,23 +16,14 @@ router.get('/delivery', (req, res) => {
 });
 router.get('/deliveryTracking', (req, res) => {
 
-  // var ID = req.query.id;
-
   var ID = req.query.id;
-  console.log("trackingID: " + ID);
   var objID = mongoose.Types.ObjectId(ID);
-
-    Del.findOne({_id:[objID]}, function(err, item) {
-      //console.log("FOUND: " + item)
-
-
 
     Del.findOne({_id:[objID]}, function(err, item) {
       if (!item || err) {
         req.flash('error_msg', 'Delivery ID Incorrect.');
         return res.redirect('back');
       }
-
 
       var trackDel = [];
       var elem = new Object();
@@ -63,16 +54,6 @@ router.post('/delivery', (req, res) => {
   });
   console.log(newUser.streetName);
   del4Date = newUser;
-
-  /*
-  newUser.save()
-
-  .then(user => {
-    */
-    res.redirect('/courier');
-  //})
-
-
     res.redirect('/courier');
 
 });
@@ -108,30 +89,22 @@ router.post('/deliveryDT', (req, res) => {
       formDate = ( today.getDate() + 1 ) + "/" + ( today.getMonth() + 1);
       newUser.DeliveryDate = formDate;
     }
+    if (newUser.DeliveryDate == 'Date+5') {
+      formDate = ( today.getDate() + 5 ) + "/" + ( today.getMonth() + 1);
+      newUser.DeliveryDate = formDate;
+    }
   };
   newUser.save(function(err){
     xID = newUser._id;
     var payDel = [];
         var elem = new Object();
         elem["id"] = xID;
-
-
-        console.log("Xid: " + xID);
-
-
         payDel.push(elem);
         if (payDel.length > 0) {
         res.render('payment', {delivery: payDel});
         }
     del4Date = null;
-
- })/*
-  .then(user => {
-
-  }) */
-
  })
-
 });
 
 module.exports = router;

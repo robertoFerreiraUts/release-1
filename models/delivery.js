@@ -23,7 +23,6 @@ const deliverySchema = new Schema({
         type: String,
         required: false
     },
-
     DeliveryDate: {
         type: String,
         required: false
