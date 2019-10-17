@@ -16,6 +16,7 @@ router.post('/payment', (req, res) => {
   console.log("Price: " +req.session.cart.totalPrice);
   console.log("UserID: " + req.body.userID);
   console.log("trackingID: " + req.body.trackingID);
+
   if (!req.body.cardnum.match("[0-9]+")) {
     errors.push({text:'Card Number must be digits'});
   }
@@ -59,7 +60,7 @@ var mailOptions = {
   from: 'easygomailing@gmail.com',
   to: req.body.emailaddress,
 subject: 'Payment Confirmation',
-text: "This is confirmation of your EasyGo Payment!." + "\n" + "You purchased a total of " + req.session.cart.totalqty + " items for a total price of $" + req.session.cart.totalprice + "\n" + "Confirm your payment details below:" + "\n" + "Card Number: ####-####-####-" + splitcard + "\n" + "Phone Number: " + req.body.phonenum
+text: "This is confirmation of your EasyGo Payment!." + "\n" + "You purchased a total of " + req.session.cart.totalQty + " items for a total price of $" + req.session.cart.totalPrice + "\n" + "Confirm your payment details below:" + "\n" + "Card Number: ####-####-####-" + splitcard + "\n" + "Phone Number: " + req.body.phonenum
 }
 
 transporter.sendMail(mailOptions, function(error, info){
