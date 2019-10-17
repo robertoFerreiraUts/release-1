@@ -1,32 +1,38 @@
 <center>
       <h3 class="text-center">Payment</h3>
-
-
+<!-- Display Delivery ID -->
 {{#each delivery as |del|}}
 <b>Delivery ID: {{del.id}}</b>
-
+      <!-- POST form -->
       <form id="pay" action="/payment/payment" method="post">
         <div class="form-group">
+          <!-- Input Card Number -->
           <label for="cardnum">Card Number</label>
-          <input type="text" class="form-control" name="cardnum" value="{{cardnum}}" style="width: 300px;">
+          <input type="text" class="form-control" name="cardnum" value="{{cardnum}}" style="width: 300px;"> 
         </div>
         <div class="form-group">
+          <!-- Input Expiry Date -->
           <label for="expiredate">Expiration Date</label>
           <input type="month" class="form-control" name="expiredate" value="{{expiredate}}"style="width: 200px;">
         </div>
         <div class="form-group">
+          <!-- Input Security Code -->
           <label for="securitycode">Security Code</label>
           <input type="text" class="form-control" name="securitycode" value="{{securitycode}}"style="width: 75px;">
         </div>
         <div class="form-group">
+          <!-- Input Phone Number -->
           <label for="phonenum">Phone Number</label>
           <input type="text" class="form-control" name="phonenum" value="{{phonenum}}"style="width: 300px;">
         </div>
         <div class="form-group">
+          <!-- Input Email Address -->
           <label for="emailaddress">Email Address</label>
           <input type="text" class="form-control" name="emailaddress" value="{{emailaddress}}" style="width: 300px;">
         </div>
+        <!-- Hidden input for User ID -->
         <input type="hidden" name="userID" value="{{../user.id}}">
+        <!-- Hidden input for Delivery ID -->
         <input type="hidden" name="trackingID" value="{{del.id}}">
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
