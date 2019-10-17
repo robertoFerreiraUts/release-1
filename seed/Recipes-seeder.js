@@ -3,7 +3,7 @@ var Recipe = require('../models/Recipes');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/Recipes',{useNewUrlParser:true});
 
-var Recipes = 
+var recipes = 
 [
 
     new Recipe({
@@ -42,6 +42,7 @@ var Recipes =
 
 var done =0;
 for(var i=0; i<recipes.length; i++){
+    console.log(recipes);
     recipes[i].save(function(err, result){
         done++;
         if(done === recipes.length){
