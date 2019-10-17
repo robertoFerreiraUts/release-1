@@ -60,7 +60,7 @@ var mailOptions = {
   from: 'easygomailing@gmail.com',
   to: req.body.emailaddress,
 subject: 'Payment Confirmation',
-text: "This is confirmation of your EasyGo Payment!." + "\n" + "You purchased a total of " + req.session.cart.totalQty + " items for a total price of $" + req.session.cart.totalPrice + "\n" + "Confirm your payment details below:" + "\n" + "Card Number: ####-####-####-" + splitcard + "\n" + "Phone Number: " + req.body.phonenum
+text: "This is confirmation of your EasyGo Payment!."  + "\n" + "Your delivery ID is " + req.body.trackingID + "\n" + "You purchased a total of " + req.session.cart.totalQty + " items for a total price of $" + req.session.cart.totalPrice + "\n" + "Confirm your payment details below:" + "\n" + "Card Number: ####-####-####-" + splitcard + "\n" + "Phone Number: " + req.body.phonenum
 }
 
 transporter.sendMail(mailOptions, function(error, info){
