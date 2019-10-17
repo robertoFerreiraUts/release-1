@@ -46,7 +46,3 @@ test('Should get delivery tracking page', async() => {
     .get('/deliveryTracking').expect(200);
 }) 
  
-afterEach(async () => {
-    await User.deleteMany()
-  })
-
