@@ -89,6 +89,10 @@ router.post('/deliveryDT', (req, res) => {
       formDate = ( today.getDate() + 1 ) + "/" + ( today.getMonth() + 1);
       newUser.DeliveryDate = formDate;
     }
+    if (newUser.DeliveryDate == 'Date+5') {
+      formDate = ( today.getDate() + 5 ) + "/" + ( today.getMonth() + 1);
+      newUser.DeliveryDate = formDate;
+    }
   };
   newUser.save(function(err){
     xID = newUser._id;
