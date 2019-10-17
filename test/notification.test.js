@@ -12,9 +12,8 @@ test('Should input payment details', async() => {
     expiredate: 'October 2019',
     securitycode: '1234',
     phonenum: '0412345678',
-    emailaddress: 'NSW'
-        
-    }).expect(200)
+    emailaddress: 'joshuachun@outlook.com'
+    }).expect(302)
 })
 
 test('Should not input incorrect card number', async() => {
@@ -23,14 +22,13 @@ test('Should not input incorrect card number', async() => {
       expiredate: 'October 2019',
       securitycode: '1234',
       phonenum: '0412345678',
-      emailaddress: 'NSW'
-          
+      emailaddress: 'joshuachun@outlook.com'
       }).expect(200)
   })
 
 test('Should get payment page', async() => {
     await request(app)
-    .get('/deliveryTracking').expect(200);
+    .get('/payment').expect(200);
 }) 
  
 afterEach(async () => {
