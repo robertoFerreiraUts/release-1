@@ -46,9 +46,11 @@
         </tr>
         <tr>
           {{#each orders as |order|}}
-          <form action="/orders/orderManagement/{{order.orderID}}?_method=PUT" method="POST">
+          <form action="/orders/updateOrder/">
             <input type="hidden" name="_method" value="PUT">
             <td class="tg-c3ow" name="orderID">{{order.orderID}}</td>
+            <input type="hidden" name="orderID" value={{order.orderID}}>
+            <input type="hidden" name="loggedInUserID" value={{../user.id}}>
             <td class="tg-c3ow" name="userID">{{order.userID}}</td>
             <td class="tg-c3ow" name="orderAddress">{{order.orderAddress}}</td>
             <td class="tg-c3ow" name="price">{{order.price}}</td>

@@ -45,6 +45,7 @@ router.get('/orderManagement/:id', (req, res) => {
           elem["userID"] = order.userID;
           elem["orderAddress"] = order.orderAddress;
           elem["price"] = order.price;
+          //elem["trackingID"] = order.trackingID;
           elem["orderStatus"] = order.orderStatus;
           allOrders.push(elem);
           console.log(elem);
@@ -84,17 +85,20 @@ router.get('/orderManagement/:id', (req, res) => {
 });
 
 // Admin Order management post - update order status
-router.put('/orderManagement/:id', (req, res) => {
-  var userID = req.body.loggedInUserID;
+router.get('/updateOrder', (req, res) => {
+  console.log("update ran");
+  var userID = req.query.loggedInUserID;
+  console.log("userID: " + userID);
   Order.findOne({
-    _id: mongoose.Types.ObjectId(req.params.id)
+    _id: mongoose.Types.ObjectId(req.query.orderID)
   })
   .then(order => {
-    order.orderStatus = req.body.changedStatus;
+    order.orderStatus = req.query.changedStatus;
     order.save()
       .then(order => {
         req.flash('success_msg', 'Delivery Status updated');
         res.redirect(303, '/orders/orderManagement/'+userID);
+        //res.redirect(303, '/');
       })
   });
 });
