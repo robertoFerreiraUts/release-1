@@ -23,7 +23,10 @@ const deliverySchema = new Schema({
         type: String,
         required: false
     },
-
+    estDel: {
+          type: Date,
+          default: new Date(+new Date() + 2*24*60*60*1000)
+        },
     DeliveryDate: {
         type: String,
         required: false

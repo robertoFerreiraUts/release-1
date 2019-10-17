@@ -15,27 +15,13 @@ router.get('/delivery', (req, res) => {
   res.render('/delivery');
 });
 router.get('/deliveryTracking', (req, res) => {
-<<<<<<< HEAD
   // var ID = req.query.id;
-=======
-  
->>>>>>> e924dc24007bbfd809bb329f937774777c543386
   var ID = req.query.id;
   console.log("trackingID: " + ID);
   var objID = mongoose.Types.ObjectId(ID);
-<<<<<<< HEAD
     Del.findOne({_id:[objID]}, function(err, item) {
       //console.log("FOUND: " + item)
 
-=======
-  
-    Del.findOne({_id:[objID]}, function(err, item) {  
-      if (!item || err) {
-        req.flash('error_msg', 'Delivery ID Incorrect.');
-        return res.redirect('back');
-      }
-      
->>>>>>> e924dc24007bbfd809bb329f937774777c543386
       var trackDel = [];
       var elem = new Object();
       elem["streetName"] = item.streetName;
@@ -46,6 +32,7 @@ router.get('/deliveryTracking', (req, res) => {
       elem["date"] = item.DeliveryTime +  ' on the ' + item.DeliveryDate;
 
       trackDel.push(elem);
+      console.log(trackDel);
       if (trackDel.length > 0) {
       res.render('deliveryTracking', {delivery: trackDel});
       }
@@ -63,9 +50,7 @@ router.post('/delivery', (req, res) => {
     postcode: req.body.postcode,
     state: req.body.state
   });
-  console.log(newUser.streetName);
   del4Date = newUser;
-<<<<<<< HEAD
   /*
   newUser.save()
 
@@ -74,10 +59,6 @@ router.post('/delivery', (req, res) => {
     res.redirect('/courier');
   //})
 
-=======
-    res.redirect('/courier');
-  
->>>>>>> e924dc24007bbfd809bb329f937774777c543386
 });
 
 
@@ -113,28 +94,23 @@ router.post('/deliveryDT', (req, res) => {
     }
   };
   newUser.save(function(err){
+    console.log(newUser._id)
     xID = newUser._id;
     var payDel = [];
         var elem = new Object();
         elem["id"] = xID;
-<<<<<<< HEAD
 
         console.log("Xid: " + xID);
-=======
->>>>>>> e924dc24007bbfd809bb329f937774777c543386
         payDel.push(elem);
+        console.log(payDel);
         if (payDel.length > 0) {
         res.render('payment', {delivery: payDel});
         }
     del4Date = null;
-<<<<<<< HEAD
  })/*
   .then(user => {
 
   }) */
-=======
- })
->>>>>>> e924dc24007bbfd809bb329f937774777c543386
 });
 
 module.exports = router;
