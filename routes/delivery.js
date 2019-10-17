@@ -15,13 +15,16 @@ router.get('/delivery', (req, res) => {
   res.render('/delivery');
 });
 router.get('/deliveryTracking', (req, res) => {
-  // var ID = req.query.id;
+  
   var ID = req.query.id;
-  console.log("trackingID: " + ID);
   var objID = mongoose.Types.ObjectId(ID);
-    Del.findOne({_id:[objID]}, function(err, item) {
-      //console.log("FOUND: " + item)
-
+  
+    Del.findOne({_id:[objID]}, function(err, item) {  
+      if (!item || err) {
+        req.flash('error_msg', 'Delivery ID Incorrect.');
+        return res.redirect('back');
+      }
+      
       var trackDel = [];
       var elem = new Object();
       elem["streetName"] = item.streetName;
@@ -32,7 +35,6 @@ router.get('/deliveryTracking', (req, res) => {
       elem["date"] = item.DeliveryTime +  ' on the ' + item.DeliveryDate;
 
       trackDel.push(elem);
-      console.log(trackDel);
       if (trackDel.length > 0) {
       res.render('deliveryTracking', {delivery: trackDel});
       }
@@ -50,15 +52,10 @@ router.post('/delivery', (req, res) => {
     postcode: req.body.postcode,
     state: req.body.state
   });
+  console.log(newUser.streetName);
   del4Date = newUser;
-  /*
-  newUser.save()
-
-  .then(user => {
-    */
     res.redirect('/courier');
-  //})
-
+  
 });
 
 
@@ -94,23 +91,16 @@ router.post('/deliveryDT', (req, res) => {
     }
   };
   newUser.save(function(err){
-    console.log(newUser._id)
     xID = newUser._id;
     var payDel = [];
         var elem = new Object();
         elem["id"] = xID;
-
-        console.log("Xid: " + xID);
         payDel.push(elem);
-        console.log(payDel);
         if (payDel.length > 0) {
         res.render('payment', {delivery: payDel});
         }
     del4Date = null;
- })/*
-  .then(user => {
-
-  }) */
+ })
 });
 
 module.exports = router;
