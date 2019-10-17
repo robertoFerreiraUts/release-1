@@ -122,10 +122,6 @@ app.get('/recipes/dessert', (req, res) => {
   res.render('recipes/dessert');
 });
 
-// Create Recipe
-// app.get('/recipes/CreateRecipe', (req, res) => {
-//   res.render('recipes/CreateRecipe');
-// });
 
 // About Route
 app.get('/about', (req, res) => {
@@ -167,9 +163,6 @@ app.use('/orders', orders);
 app.use('/delivery', delivery);
 
 app.use('/', indexRouter);
-
-// controllers
-// recipesController(app);
 
 //Load 404 page (if page is not exist!)
 app.use((req ,res) => res.render('not_found'));

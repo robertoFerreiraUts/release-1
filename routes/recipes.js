@@ -25,9 +25,6 @@ router.get('/dessert', (req, res) => {
   res.render('recipes/dessert');
 });
 
-// router.get('/CreateRecipe', (req, res) => {
-//   res.render('recipes/CreateReceipe');
-// })
 
 app.use(function(req, res, next) {
     return res.status(404).send({ message: 'Route'+req.url+' Not found.' });

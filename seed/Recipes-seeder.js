@@ -38,7 +38,7 @@ var recipes =
         image: 'image/recipe4.jpg'
     }),
 
-]
+];
 
 var done =0;
 for(var i=0; i<recipes.length; i++){

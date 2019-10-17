@@ -1,23 +1,62 @@
-{{# each recipes}}
-<div class="row">
-   {{# each this}}
-            <div class = "col-sm-6 col-md-3  border thumbnail-columns" >
-      <div class = "thumbnail">
-         <img src = "{{this.image}}" alt = "Generic placeholder" class="img-responsive">
-      </div>
-      
-      <div class = "caption">
-         <h3 class="title">{{this.recipe_Name}}</h3>
-         <p class="description">{{this.item}}</p>
-         
-         <div class="clearfix">
-           <div class="price pull-left">${{this.instructions}}</div>
-            
-        </div>            
-           
-      </div>
-   </div>
+<form method="post" action="recipes/recipeslist">
 
-   {{/each}}
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+                <div class="card" style="width:400px">
+                        <div class="card-body">
+                            <img class="card-img-top" src="images/recipe1.jpg" alt="Recipe image">
+                          <h4 class="card-title">Butter Chicken</h4>
+                          <p class="card-text">Learn how to make Butter Chicken</p>
+                        </div>
 </div>
-{{/each}}
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+                <div class="card" style="width:400px">
+                        <div class="card-body">
+                            <img class="card-img-top" src="images/recipe2.jpg" alt="Recipe image">
+                          <h4 class="card-title">Chocolate Cake</h4>
+                          <p class="card-text">Learn how to make Chocolate Cake</p>
+                        </div>
+</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+                <div class="card" style="width:400px">
+                        <div class="card-body">
+                            <img class="card-img-top" src="images/recipe3.jpg" alt="Recipe image">
+                          <h4 class="card-title">Spaghetti Bolognese</h4>
+                          <p class="card-text">Learn how to make Spaghetti Bolognese</p>
+                        </div>
+</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+                <div class="card" style="width:400px">
+                        <div class="card-body">
+                            <img class="card-img-top" src="images/recipe4.jpg" alt="Recipe image">
+                          <h4 class="card-title">Vegetarian Lasagna</h4>
+                          <p class="card-text">Learn how to make Vegetarian Lasagna</p>
+                        </div>
+</div>
+        </div>
+    </div>
+</div>
+
+</form>
