@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-
+const recipesModel = require('./models/Recipes');
 
 
 
@@ -99,7 +99,21 @@ app.use(function(req, res, next){
 
 // All Recipes
 app.get('/recipes/recipeslist', (req, res) => {
-  res.render('recipes/recipes');
+  recipesModel
+  .find({})
+  .exec((err, data) => {
+    if(err) return res.send(err);
+    res.render('recipes/recipes', {arrObj: data});
+  });
+});
+
+app.get('/recipes/:recipe_Tag', (req, res) => {
+  recipesModel
+  .find({ recipe_Tag: req.params.recipe_Tag })
+  .exec((err, data) => {
+    if(err) return res.send(err);
+    res.render('recipes/butterchicken', {recipeDetails: data});
+  });
 });
 
 // Chicken Recipes
@@ -120,6 +134,10 @@ app.get('/recipes/vegetarian', (req, res) => {
 // Dessert Recipes
 app.get('/recipes/dessert', (req, res) => {
   res.render('recipes/dessert');
+});
+
+app.get('/recipes/butterchicken', (req, res) => {
+  res.render('recipes/butterchicken');
 });
 
 
@@ -167,5 +185,10 @@ app.use('/', indexRouter);
 //Load 404 page (if page is not exist!)
 app.use((req ,res) => res.render('not_found'));
 
+// const port = process.env.PORT || 5000;
+
+// app.listen(port, () =>{
+//   console.log(`Server started on port ${port}`);
+// });
 
 module.exports = app

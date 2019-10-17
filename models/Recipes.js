@@ -13,6 +13,16 @@ var schema = new Schema({
         required: true
     },
 
+    recipe_Tag: {
+        type: String,
+        required: true
+    },
+
+    description: {
+        type: String,
+        required: true
+    },
+
     item: {
         type: String,
         required: true
