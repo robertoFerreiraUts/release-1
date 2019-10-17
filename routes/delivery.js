@@ -100,10 +100,7 @@ router.post('/deliveryDT', (req, res) => {
         res.render('payment', {delivery: payDel});
         }
     del4Date = null;
- })/*
-  .then(user => {
-    
-  }) */
+ })
 });
 
 module.exports = router;
