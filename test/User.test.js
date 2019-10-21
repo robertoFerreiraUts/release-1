@@ -18,7 +18,7 @@ test('Should signup a new user', async() => {
   const response =  await request(app).post('/users/register').send({
         firstname: 'Jack',
         lastname: 'joso',
-        email: 'jack2js@mail.com',
+        email: 'jack3js@mail.com',
         password: 'jack123',
         password2: 'jack123'
         
@@ -38,7 +38,7 @@ test('Should not signup with unmatched password', async() => {
 
 test('Should login existing user', async() => {
     await request(app).post('/users/login').send({
-        email: 'jack2ss@mail.com',
+        email: 'jack3js@mail.com',
         password: 'jack123'
     }).expect(302)
 })
@@ -79,8 +79,5 @@ test('Should delete profile for user', async() => {
     .set('Auth', {ensureAuthenticated})
     .send().expect(302);
 }) 
-afterEach(async () => {
-    await User.deleteMany()
-  
-  })
+
 
