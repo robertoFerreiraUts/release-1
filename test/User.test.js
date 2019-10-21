@@ -73,7 +73,7 @@ test('Should get 404 page', async() => {
     .get('/hi').expect(200);
 }) 
  
-test('Should delete profile for user', async() => {
+test('Should get profile page', async() => {
     await request(app)
     .get('/users/areusure')
     .set('Auth', {ensureAuthenticated})
