@@ -5,5 +5,5 @@ const mongoose = require('mongoose')
 
 test('Load Page', async() => {
     await request(app).get('/recipes/recipeslist').send({
-    }).expect(302)
+    }).expect(200)
 })
