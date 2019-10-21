@@ -4,6 +4,6 @@ const Recipes = require('../models/Recipes');
 const mongoose = require('mongoose')
 
 test('Load Page', async() => {
-    await request(app).post('/recipes/recipeslist').send({
+    await request(app).get('/recipes/recipeslist').send({
     }).expect(302)
 })
