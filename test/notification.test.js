@@ -13,7 +13,7 @@
 //     securitycode: '1234',
 //     phonenum: '0412345678',
 //     emailaddress: 'joshuachun@outlook.com'
-//     }).expect(302)
+//     }).expect(200)
 // })
 
 // test('Should not input incorrect card number', async() => {
