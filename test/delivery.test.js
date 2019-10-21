@@ -33,7 +33,7 @@ test('Should input stage two of delivery details', async() => {
    
 test('should find delivery for tracking', async() => {
     const response =  await request(app).get('/delivery/deliveryTracking').query({ id: '5da79178ceb0153dd4bb7147' })
-    .expect(200)
+    .expect(302)
 })
 
 test('should not find delivery for tracking', async() => {
